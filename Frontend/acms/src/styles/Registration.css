@@ -1,0 +1,166 @@
+/* Patient.css */
+
+/* Full Page Background */
+.login-container {
+    background: linear-gradient(135deg, #4CAF50, #3498db);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Main Form Container */
+.form-container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 50px 60px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Heading Styling */
+h4 {
+    color: #2c3e50;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+/* Subheading Styling */
+p {
+    font-size: 16px;
+    color: #7f8c8d;
+    margin-bottom: 30px;
+}
+
+/* Form */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Form Group Styling */
+.form-group {
+    position: relative;
+    width: 100%;
+}
+
+/* Labels Styling */
+label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #34495e;
+    display: block;
+    text-align: left;
+}
+
+/* Inputs Styling */
+input {
+    padding: 15px;
+    font-size: 14px;
+    border: 1px solid #bdc3c7;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    background-color: #ecf0f1;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    border-color: #3498db;
+    background-color: #fff;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.4);
+}
+
+/* Error Message Styling */
+.error-text {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 5px;
+    text-align: left;
+    font-style: italic;
+}
+
+/* Buttons */
+button {
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button[type="button"] {
+    background-color: #3498db;
+    color: white;
+    margin-top: 10px;
+}
+
+button[type="button"]:hover {
+    background-color: #2980b9;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Media Queries for Small Screens */
+@media (max-width: 768px) {
+    .form-container {
+        padding: 30px 40px;
+    }
+
+    h4 {
+        font-size: 26px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    input {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    button {
+        padding: 12px;
+        font-size: 14px;
+    }
+}
