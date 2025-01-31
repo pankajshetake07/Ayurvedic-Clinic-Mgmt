@@ -28,8 +28,11 @@ public class User {
 	private Date dob;		//data of birth
 	private String address;		//Address
 	private String gender;		//Gender
-	private boolean status; 		//Whether the patient is active or not
+	private boolean status; 
+	private String email; //Whether the patient is active or not
 	
+	
+
 	//mapped with the role table
 //	@ManyToOne(cascade = CascadeType.ALL)
 //	@JoinColumn(name="rid")
@@ -65,6 +68,19 @@ public class User {
 		this.role = role;
 		this.status = status;
 		this.employee = employee;
+	}
+	
+	public User(String uname, String password, String fname, String lname, Date dob, String address, String gender, String email, Role role) {
+	    this.uname = uname;
+	    this.password = password;
+	    this.fname = fname;
+	    this.lname = lname;
+	    this.dob = dob;
+	    this.address = address;
+	    this.gender = gender;
+	    //this.status = status;
+	    this.email = email;
+	    this.role = role;
 	}
 
 	public int getUid() {
@@ -151,6 +167,13 @@ public class User {
 
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
+	}
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 }

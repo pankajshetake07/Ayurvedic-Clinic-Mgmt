@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -46,10 +47,7 @@ public class UserController {
 	
 	@PostMapping("/login")
 	public User loginUser(@RequestBody LoginDto credentials) {
-//		System.out.println("Username: " + credentials.getUname());
-//	    System.out.println("Password: " + credentials.getPassword());
 	    User user = userService.loginUser(credentials.getUname(), credentials.getPassword());
-//	    System.out.println("Returned User: " + user);
 	    return user;
 	}
 	
@@ -63,5 +61,10 @@ public class UserController {
 	    User deletedUser = userService.deletePatientByFname(fname);
 	    return ResponseEntity.ok("User with first name '" + deletedUser.getFname() + "' has been deleted successfully.");
 	}
+	
+	@PutMapping("/user/update/{id}")
+	public User updateUser(@PathVariable int id, @RequestBody UserDTO userDTO) {
+        return userService.updateUser(id, userDTO);
+    }
 
 }

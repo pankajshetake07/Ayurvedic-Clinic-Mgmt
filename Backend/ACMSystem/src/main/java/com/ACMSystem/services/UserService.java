@@ -84,4 +84,21 @@ public class UserService {
 	    userRepository.delete(user);
 	    return user;
 	}
+	
+	public User updateUser(int id, UserDTO userDTO) { //fetching user by userID
+        User existingUser = userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found with id " + id));
+
+        existingUser.setUname(userDTO.getUname());
+        existingUser.setPassword(userDTO.getPassword());
+        existingUser.setFname(userDTO.getFname());
+        existingUser.setLname(userDTO.getLname());
+        existingUser.setDob(userDTO.getDob());
+        existingUser.setAddress(userDTO.getAddress());
+        existingUser.setGender(userDTO.getGender());
+        existingUser.setEmail(userDTO.getEmail());
+        //existingUser.setStatus(userDTO.getStatus());
+
+        return userRepository.save(existingUser);
+    }
 }
