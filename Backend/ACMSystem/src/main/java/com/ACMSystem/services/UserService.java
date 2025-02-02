@@ -42,6 +42,7 @@ public class UserService {
 		user.setDob(userdto.getDob());
 		user.setAddress(userdto.getAddress());
 		user.setGender(userdto.getGender());
+		user.setEmail(userdto.getEmail());	
 		user.setStatus(true);
 		
 		Role role = roleRepository.findByRname("Patient")

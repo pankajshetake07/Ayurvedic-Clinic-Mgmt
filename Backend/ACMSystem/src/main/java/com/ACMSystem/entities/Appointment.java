@@ -1,83 +1,94 @@
 package com.ACMSystem.entities;
-
-import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+
 @Entity
-@Table(name = "appointment")
 public class Appointment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="aid")
-    private int id; // Appointment ID
-
-//    @ManyToOne
-//    @JoinColumn(name = "doctor_id", nullable = false)
-//    private User doctor; // Reference to Doctor (User table)
+    private Long aid; // Appointment ID (auto-incremented)
 
     @ManyToOne
-    @JoinColumn(name = "patient_id")
-    private User patient; // Reference to Patient (nullable if not booked)
+    @JoinColumn(name = "pid")  // Patient ID (foreign key)
+    private Patient patient;
 
-    @Column(name = "appointment_date", nullable = false)
-    private LocalDate appointmentDate; // Date of the appointment
+    @ManyToOne
+    @JoinColumn(name = "slot_id")  // Slot ID (foreign key to Slot table)
+    private Slot slot;  // Reference to Slot entity
+    
+    @Column(name="app_date")
+    private LocalDate appDate;  // Appointment Date
+    @Column(name="app_time")
+    private LocalTime appTime;  // Appointment Time
 
-    @Column(name = "appointment_time", nullable = false)
-    private LocalTime appointmentTime; // Time of the appointment (11:00 AM - 7:00 PM)
-
-    @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
-    private AppointmentStatus status; // Status (AVAILABLE / BOOKED / CANCELED)
+    private AppointmentStatus status;  // Status (PENDING, BOOKED, CANCELLED)
 
-    public Appointment() {}
+    
+    public Appointment() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-    public Appointment(LocalDate appointmentDate, LocalTime appointmentTime, AppointmentStatus status) {
-        this.appointmentDate = appointmentDate;
-        this.appointmentTime = appointmentTime;
+	// Constructor
+    public Appointment(Patient patient, Slot slot, LocalDate appDate, LocalTime appTime, AppointmentStatus status) {
+        this.patient = patient;
+        this.slot = slot;
+        this.appDate = appDate;
+        this.appTime = appTime;
         this.status = status;
     }
 
     // Getters and Setters
-    public int getId() {
-        return id;
+    public Long getAid() {
+        return aid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setAid(Long aid) {
+        this.aid = aid;
     }
 
-//    public User getDoctor() {
-//        return doctor;
-//    }
-//
-//    public void setDoctor(User doctor) {
-//        this.doctor = doctor;
-//    }
-
-    public User getPatient() {
+    public Patient getPatient() {
         return patient;
     }
 
-    public void setPatient(User patient) {
+    public void setPatient(Patient patient) {
         this.patient = patient;
     }
 
-    public LocalDate getAppointmentDate() {
-        return appointmentDate;
+    public Slot getSlot() {
+        return slot;
     }
 
-    public void setAppointmentDate(LocalDate appointmentDate) {
-        this.appointmentDate = appointmentDate;
+    public void setSlot(Slot slot) {
+        this.slot = slot;
     }
 
-    public LocalTime getAppointmentTime() {
-        return appointmentTime;
+    public LocalDate getAppDate() {
+        return appDate;
     }
 
-    public void setAppointmentTime(LocalTime appointmentTime) {
-        this.appointmentTime = appointmentTime;
+    public void setAppDate(LocalDate appDate) {
+        this.appDate = appDate;
+    }
+
+    public LocalTime getAppTime() {
+        return appTime;
+    }
+
+    public void setAppTime(LocalTime appTime) {
+        this.appTime = appTime;
     }
 
     public AppointmentStatus getStatus() {
