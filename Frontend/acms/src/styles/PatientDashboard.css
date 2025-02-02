@@ -1,4 +1,4 @@
-/* Global Settings */
+/* ========== Global Settings ========== */
 * {
     margin: 0;
     padding: 0;
@@ -10,16 +10,15 @@ body {
     background-color: #f5f7fa;
 }
 
-/* Patient Dashboard Layout */
+/* ========== Patient Dashboard Layout ========== */
 .patient-dashboard {
     display: grid;
     grid-template-columns: 250px 1fr;
     min-height: 100vh;
-    background-color: #f5f7fa;
     transition: all 0.3s ease;
 }
 
-/* Sidebar */
+/* ========== Sidebar ========== */
 .dashboard-sidebar {
     background: #2d5d4b;
     color: white;
@@ -28,18 +27,16 @@ body {
     width: 250px;
     height: 100%;
     box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
 }
 
 .sidebar-header {
     padding: 20px;
     border-bottom: 1px solid #3a7560;
-    margin-bottom: 20px;
     text-align: center;
 }
 
 .sidebar-header h2 {
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 600;
     color: #fff;
     letter-spacing: 1px;
@@ -75,15 +72,14 @@ body {
     font-weight: 600;
 }
 
-/* Main Content */
+/* ========== Main Content ========== */
 .dashboard-main {
     margin-left: 250px;
     width: calc(100% - 250px);
     padding-top: 80px;
-    /* Prevents header from overlapping content */
 }
 
-/* Header */
+/* ========== Header ========== */
 .dashboard-header {
     background: white;
     padding: 15px 30px;
@@ -99,7 +95,7 @@ body {
     z-index: 1000;
 }
 
-/* Welcome Text */
+/* User Info */
 .user-info {
     display: flex;
     align-items: center;
@@ -126,7 +122,7 @@ body {
     transform: scale(1.05);
 }
 
-/* Dashboard Content */
+/* ========== Dashboard Content ========== */
 .dashboard-content {
     padding: 30px;
 }
@@ -156,200 +152,22 @@ body {
     font-weight: 600;
 }
 
-/* Form Groups */
-.form-group {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.form-group label {
-    font-size: 14px;
-    font-weight: 600;
-    color: #2d5d4b;
-}
-
-input,
-textarea,
-select {
-    width: 500px;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 14px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-    border-color: #2d5d4b;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(45, 93, 75, 0.1);
-}
-
-/* Date & Time Inputs */
-input[type="date"],
-input[type="time"] {
-    width: 50%;
-    min-width: 200px;
-}
-
-/* Buttons */
-button {
-    background: #2d5d4b;
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background 0.3s ease, transform 0.2s ease;
-}
-
-button:hover {
-    background: #23483a;
-    transform: scale(1.05);
-}
-
-/* Medical & Appointment Cards */
-.medical-record,
-.appointment-card {
-    background: #f8f5f1;
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.medical-record:hover,
-.appointment-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Book Appointment Section */
-.dashboard-card.book-appointment {
-    background: #f9fdfb;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    margin: auto;
-    text-align: center;
-    border: 2px solid #2d5d4b;
-}
-
-.dashboard-card.book-appointment h2 {
-    font-size: 24px;
-    color: #2d5d4b;
-    margin-bottom: 20px;
-    border-bottom: 3px solid #2d5d4b;
-    padding-bottom: 10px;
-}
-
-/* Book Appointment Form Groups */
-.book-appointment .form-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-.book-appointment .form-group label {
-    font-size: 16px;
-    font-weight: 600;
-    color: #23483a;
-}
-
-.book-appointment input,
-.book-appointment select {
-    width: 90%;
-    padding: 12px;
-    border: 2px solid #2d5d4b;
-    border-radius: 8px;
-    font-size: 16px;
-    text-align: center;
-    background: #fff;
-    transition: 0.3s ease;
-}
-
-.book-appointment input:focus,
-.book-appointment select:focus {
-    border-color: #d4a96c;
-    outline: none;
-}
-
-/* Calendar Icon - Font Awesome */
-.book-appointment input[type="date"]::before {
-    content: "\f133";
-    /* Font Awesome calendar icon */
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-}
-
-/* Time Icon - Font Awesome */
-.book-appointment input[type="time"]::before {
-    content: "\f017";
-    /* Font Awesome clock icon */
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-}
-
-/* Button Styling */
-.book-appointment button {
-    background: #d4a96c;
-    color: white;
-    border: none;
-    padding: 14px 30px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.book-appointment button:hover {
-    background: #c2995a;
-    transform: scale(1.05);
-}
-
-/* Success Message */
-.success-message {
-    color: #2d5d4b;
-    font-size: 16px;
-    font-weight: bold;
-    margin-top: 15px;
-    padding: 10px;
-    background: #eaf6ed;
-    border: 2px solid #2d5d4b;
-    border-radius: 8px;
-}
-
-/* Styling for Book an Appointment section */
+/* ========== Book Appointment Section ========== */
 #appointment {
     background: #f9fdfb;
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     max-width: 500px;
-    margin: auto;
+    margin: 50px auto;
     text-align: center;
     border: 2px solid #2d5d4b;
+    display: block !important;
+    width: 500px !important;
+    margin: auto !important;
 }
 
-/* Heading */
+/* Appointment Heading */
 #appointment h2 {
     font-size: 24px;
     color: #2d5d4b;
@@ -359,26 +177,28 @@ button:hover {
     font-weight: 600;
 }
 
-/* Form Group */
+/* Form Groups */
 #appointment .form-group {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
     margin-bottom: 20px;
+    width: 100%;
 }
 
-/* Form Labels */
 #appointment .form-group label {
     font-size: 16px;
     font-weight: 600;
     color: #23483a;
+    width: 100%;
+    text-align: left;
 }
 
-/* Form Inputs (Date and Time) */
-#appointment input[type="date"],
-#appointment input[type="time"] {
-    width: 90%;
+/* Inputs */
+#appointment input,
+#appointment select {
+    width: 100%;
     padding: 12px;
     border: 2px solid #2d5d4b;
     border-radius: 8px;
@@ -388,14 +208,14 @@ button:hover {
     transition: 0.3s ease;
 }
 
-/* Focus on Input Fields */
-#appointment input[type="date"]:focus,
-#appointment input[type="time"]:focus {
+#appointment input:focus,
+#appointment select:focus {
     border-color: #d4a96c;
     outline: none;
+    box-shadow: 0 0 8px rgba(45, 93, 75, 0.2);
 }
 
-/* Button Styling */
+/* Button */
 #appointment button {
     background: #d4a96c;
     color: white;
@@ -405,37 +225,13 @@ button:hover {
     font-size: 16px;
     cursor: pointer;
     transition: background 0.3s ease, transform 0.2s ease;
+    width: 100%;
+    font-weight: bold;
 }
 
 #appointment button:hover {
     background: #c2995a;
     transform: scale(1.05);
-}
-
-/* Font Awesome Calendar Icon for Date Input */
-#appointment input[type="date"]::before {
-    content: "\f133";
-    /* Font Awesome calendar icon */
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
-}
-
-/* Font Awesome Clock Icon for Time Input */
-#appointment input[type="time"]::before {
-    content: "\f017";
-    /* Font Awesome clock icon */
-    font-family: "Font Awesome 5 Free";
-    font-weight: 900;
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    pointer-events: none;
 }
 
 /* Success Message */
@@ -450,25 +246,7 @@ button:hover {
     border-radius: 8px;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    #appointment {
-        width: 100%;
-        padding: 20px;
-    }
-
-    #appointment input[type="date"],
-    #appointment input[type="time"] {
-        width: 100%;
-    }
-
-    #appointment button {
-        width: 100%;
-    }
-}
-
-
-/* Responsive Design */
+/* ========== Responsive Design ========== */
 @media (max-width: 768px) {
     .patient-dashboard {
         grid-template-columns: 1fr;
@@ -490,13 +268,17 @@ button:hover {
         width: 100%;
     }
 
-    input[type="date"],
-    input[type="time"] {
+    #appointment {
+        width: 90%;
+        padding: 20px;
+    }
+
+    #appointment input,
+    #appointment select {
         width: 100%;
     }
 
-    .book-appointment input,
-    .book-appointment select {
+    #appointment button {
         width: 100%;
     }
 }

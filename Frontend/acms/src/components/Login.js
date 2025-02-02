@@ -314,8 +314,8 @@ export default function Login() {
           setMsg("Wrong username and password");
         } else {
           localStorage.setItem("userName", `${obj.fname} ${obj.lname}`); // Store name
-          localStorage.setItem("patientId", `${obj.uid}`)
-          alert(localStorage.getItem("patientId"))
+          localStorage.setItem("userId", `${obj.uid}`)
+          alert(localStorage.getItem("userId"))
           localStorage.setItem("roleId", obj.role.rid); // Store role
           reduxDispatch(login());
           if (obj.role.rid === 3) {

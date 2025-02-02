@@ -3,29 +3,42 @@ import '../styles/PatientDashboard.css';
 import Logout from './Logout';
 import { useNavigate } from 'react-router-dom';
 
-const API_BASE = 'http://localhost:8081/xyz';
+const API_BASE = 'http://localhost:8081';
 
 const PatientDashboard = () => {
     const [activeTab, setActiveTab] = useState('appointments');
-    const [userName, setUserName] = useState("");
+    const [userName, setUserName] = useState('');
     const [profile, setProfile] = useState({ email: '', phone: '' });
     const [treatments, setTreatments] = useState([]);
     const [feedback, setFeedback] = useState('');
     const [availableSlots, setAvailableSlots] = useState([]);
     const [selectedDate, setSelectedDate] = useState('');
-    const [selectedTime, setSelectedTime] = useState('');
+    const [selectedSlot, setSelectedSlot] = useState(null);
     const [bookingSuccess, setBookingSuccess] = useState(false);
+    const [selectedTime, setSelectedTime] = useState('');
+
     const navigate = useNavigate();
 
     // Check login status
     useEffect(() => {
         const storedName = localStorage.getItem('userName');
         if (!storedName) {
-            navigate("/login");  // Redirect to login if user is not logged in
+            navigate("/login");
         } else {
             setUserName(storedName);
         }
     }, [navigate]);
+
+    useEffect(() => {
+        const currentTime = new Date();
+        const hours = String(currentTime.getHours()).padStart(2, '0');
+        const minutes = String(currentTime.getMinutes()).padStart(2, '0');
+        const currentTimeFormatted = `${hours}:${minutes}`;
+
+        setSelectedTime(currentTimeFormatted);  // Set the current time as default
+
+        console.log("Current Time Set:", currentTimeFormatted);
+    }, []);
 
     // Fetch treatments
     useEffect(() => {
@@ -37,55 +50,64 @@ const PatientDashboard = () => {
 
     // Fetch available slots when date is selected
     useEffect(() => {
-        if (!selectedDate) return;  // Prevent fetch if no date is selected
+        if (!selectedDate) return;
 
         fetch(`http://localhost:8081/appointments/available-slots?appDate=${selectedDate}`)
             .then((res) => res.json())
             .then((data) => {
-                console.log("Available Slots:", data);  // Log the response
-                setAvailableSlots(data);  // Update the availableSlots state
+                console.log("Available Slots:", data);
+                setAvailableSlots(data);
             })
             .catch((err) => console.error('Error fetching available slots:', err));
-    }, [selectedDate]);   // Only fetch when selectedDate changes
+    }, [selectedDate]);
 
     const handleDateChange = (e) => {
         const date = e.target.value;
         setSelectedDate(date);
-        console.log("Selected Date:", date);  // Log the selected date
+        console.log("Selected Date:", date);
     };
-
 
     const handleAppointmentSubmit = (e) => {
         e.preventDefault();
-        if (!selectedDate || !feedback) {
-            alert("Please select a date and provide feedback.");
+
+        const userId = localStorage.getItem("userId"); // Ensure correct key
+        const slotId = selectedSlot; // Ensure it's not null
+        const appDate = selectedDate;
+        const appTime = selectedTime;
+
+        console.log("Sending Booking Request:");
+        console.log("User ID:", userId);
+        console.log("Slot ID:", slotId);
+        console.log("Appointment Date:", appDate);
+        console.log("Appointment Time:", appTime)
+
+        if (!userId || !slotId || !appDate || !appTime) {
+            alert("Please select a valid date and slot before booking.");
             return;
         }
-        const patientId = localStorage.getItem("patientId");
-        alert(patientId)
-        if (!patientId) {
-            alert("Patient not found. Please log in again.");
-            navigate("/login");
-            return;
-        }
-        const formData = {
-            patientId: patientId,
-            appDate: selectedDate,
-            appTime: feedback,
-        };
+
+        const formData = { userId, slotId, appDate, appTime };
+        console.log("hello")
         fetch(`http://localhost:8081/appointments/book`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(formData),
         })
-            .then((res) => console.log(res.json()))
+            .then(async (res) => {
+                if (!res.ok) {
+                    const errorText = await res.text();
+                    throw new Error(errorText);
+                }
+                return res.json();
+            })
             .then((data) => {
-                console.log('Appointment booked:', data);
+                console.log('✅ Appointment booked:', data);
                 setBookingSuccess(true);
             })
-            .catch((err) => console.error('Error booking appointment:', err));
+            .catch((err) => {
+                console.error('❌ Error booking appointment:', err.message);
+                alert(`Error: ${err.message}`);
+            });
     };
 
     return (
@@ -112,33 +134,23 @@ const PatientDashboard = () => {
                     </div>
                 </header>
                 <div className="dashboard-content">
-
                     {/* ✅ Appointment Section */}
                     {activeTab === 'appointments' && (
-                        <div id="appoitment" className="dashboard-card">
+                        <div id="appointment" className="dashboard-card">
                             <h2>Book an Appointment</h2>
                             <form onSubmit={handleAppointmentSubmit}>
                                 <div className="form-group">
                                     <label>Date</label>
-                                    <input
-                                        type="date"
-                                        value={selectedDate}
-                                        onChange={handleDateChange}
-                                        required
-                                    />
+                                    <input type="date" value={selectedDate} onChange={handleDateChange} required />
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor="appointment-time">Select Time Slot</label>
-                                    <select
-                                        value={feedback}
-                                        onChange={(e) => setFeedback(e.target.value)}
-                                        required
-                                    >
-                                        <option value="">Select a time</option>
+                                    <label>Select Time Slot</label>
+                                    <select value={selectedSlot || ''} onChange={(e) => setSelectedSlot(e.target.value)} required>
+                                        <option value="">Select a slot</option>
                                         {availableSlots.length > 0 ? (
                                             availableSlots.map((slot) => (
-                                                <option key={slot.id} value={slot.slotTime}>
+                                                <option key={slot.id} value={slot.id}>
                                                     {slot.slotTime}
                                                 </option>
                                             ))
@@ -178,11 +190,7 @@ const PatientDashboard = () => {
                             <form>
                                 <div className="form-group">
                                     <label>Your Feedback</label>
-                                    <textarea
-                                        value={feedback}
-                                        onChange={(e) => setFeedback(e.target.value)}
-                                        required
-                                    />
+                                    <textarea value={feedback} onChange={(e) => setFeedback(e.target.value)} required />
                                 </div>
                                 <button type="submit">Submit Feedback</button>
                             </form>
