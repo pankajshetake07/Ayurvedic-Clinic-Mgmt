@@ -10,7 +10,7 @@ import Login from "./components/Login";
 import AssistantDoctor from "./components/AssistantDoctor";
 import ReceptionistHome from "./components/receptionistHome";
 import { useSelector } from "react-redux";
-import Logout from "./components/logout";
+import Logout from "./components/Logout";
 import Register from './components/Register'
 import PatientDashboard from "./components/PatientDashboard";
 import DoctorDashboard from "./components/DoctorDashboard";
