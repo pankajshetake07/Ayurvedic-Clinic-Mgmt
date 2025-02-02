@@ -1,166 +1,157 @@
-/* Patient.css */
-
-/* Full Page Background */
-.login-container {
-    background: linear-gradient(135deg, #4CAF50, #3498db);
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
+:root {
+    --primary-green: #2d5d4b;
+    --secondary-beige: #d4a96c;
+    --background-cream: #f8f5f1;
+    --text-dark: #2c3e50;
 }
 
-/* Main Form Container */
-.form-container {
-    background-color: rgba(255, 255, 255, 0.95);
-    padding: 50px 60px;
-    border-radius: 20px;
-    width: 90%;
-    max-width: 500px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+.register-container {
+    width: 900px;
+    height: 300px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.register-header {
     text-align: center;
-    position: relative;
-    animation: fadeIn 0.8s ease-in-out;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: var(--primary-green);
+    border-radius: 10px;
+    color: white;
 }
 
-/* Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.register-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
 }
 
-/* Heading Styling */
-h4 {
-    color: #2c3e50;
-    font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
+.ayurvedic-form {
+    background: var(--background-cream);
+    padding: 2rem;
+    border-radius: 10px;
 }
 
-/* Subheading Styling */
-p {
-    font-size: 16px;
-    color: #7f8c8d;
-    margin-bottom: 30px;
+.form-section {
+    margin-bottom: 2rem;
 }
 
-/* Form */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.form-section h2 {
+    color: var(--primary-green);
+    border-bottom: 2px solid var(--secondary-beige);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
 }
 
-/* Form Group Styling */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
 .form-group {
     position: relative;
-    width: 100%;
+    margin-bottom: 1rem;
 }
 
-/* Labels Styling */
-label {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 8px;
-    color: #34495e;
+.form-group label {
     display: block;
-    text-align: left;
+    margin-bottom: 0.5rem;
+    color: var(--text-dark);
+    font-weight: 500;
 }
 
-/* Inputs Styling */
-input {
-    padding: 15px;
-    font-size: 14px;
-    border: 1px solid #bdc3c7;
-    border-radius: 8px;
+.form-group input,
+.form-group select,
+.form-group textarea {
     width: 100%;
-    box-sizing: border-box;
+    padding: 0.8rem 1rem 0.8rem 2.5rem;
+    border: 2px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 3px rgba(45, 93, 75, 0.1);
     outline: none;
-    background-color: #ecf0f1;
-    transition: all 0.3s ease;
 }
 
-input:focus {
-    border-color: #3498db;
-    background-color: #fff;
-    box-shadow: 0 0 8px rgba(52, 152, 219, 0.4);
+.input-icon {
+    position: absolute;
+    left: 10px;
+    bottom: 40px;
+    font-size: 1.2rem;
+    color: var(--primary-green);
 }
 
-/* Error Message Styling */
-.error-text {
-    color: #e74c3c;
-    font-size: 12px;
-    margin-top: 5px;
-    text-align: left;
-    font-style: italic;
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
 }
 
-/* Buttons */
-button {
-    padding: 15px;
-    font-size: 16px;
-    border-radius: 25px;
-    cursor: pointer;
+.submit-btn {
+    background: var(--primary-green);
+    color: white;
+    padding: 1rem 2rem;
     border: none;
-    width: 100%;
-    font-weight: bold;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
     transition: all 0.3s ease;
 }
 
-button[type="submit"] {
-    background-color: #4CAF50;
+.submit-btn:hover {
+    background: #23483a;
+    transform: translateY(-2px);
+}
+
+.clear-btn {
+    background: var(--secondary-beige);
     color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-button[type="submit"]:hover {
-    background-color: #45a049;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.clear-btn:hover {
+    background: #c2955b;
+    transform: translateY(-2px);
 }
 
-button[type="button"] {
-    background-color: #3498db;
-    color: white;
-    margin-top: 10px;
+.login-redirect {
+    text-align: center;
+    margin-top: 1rem;
+    color: var(--text-dark);
 }
 
-button[type="button"]:hover {
-    background-color: #2980b9;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.login-redirect a {
+    color: var(--primary-green);
+    text-decoration: none;
+    font-weight: 500;
 }
 
-/* Media Queries for Small Screens */
-@media (max-width: 768px) {
-    .form-container {
-        padding: 30px 40px;
-    }
+.login-redirect a:hover {
+    text-decoration: underline;
+}
 
-    h4 {
-        font-size: 26px;
-    }
+#mail {
+    padding-bottom: 2.8rem;
+}
 
-    p {
-        font-size: 14px;
-    }
-
-    input {
-        padding: 12px;
-        font-size: 14px;
-    }
-
-    button {
-        padding: 12px;
-        font-size: 14px;
-    }
+#add {
+    padding-bottom: 3rem;
 }

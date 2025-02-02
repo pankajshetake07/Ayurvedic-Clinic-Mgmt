@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import '../src/styles/style.css';
+import 'font-awesome/css/font-awesome.min.css';
 import About from "./components/About";
 import Home from "./components/Home";
 import Contact from "./components/Contact";
@@ -8,29 +9,29 @@ import Login from "./components/Login";
 import AssistantDoctorHome from "./components/AssistantDoctorHome";
 import ReceptionistHome from "./components/receptionistHome";
 import { useSelector } from "react-redux";
-import Logout from "./components/logout";
+import Logout from "./components/Logout";
 import Register from './components/Register'
 import PatientDashboard from "./components/PatientDashboard";
 import DoctorDashboard from "./components/DoctorDashboard";
 import AdminEmployeeDashboard from "./components/AdminEmployeeDashboard";
 
-
 function App() {
-
-  //initial state of logged
-  const logged = useSelector((state) => state.logged);
-  const [myState, setMystate] = useState(false) //useSelector((state) => state.logged)
+  const logged = useSelector((state) => state.logged.loggedIn); // Redux state for login
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    setMystate(logged)
-  }, [])
-
+    const storedRole = localStorage.getItem("roleId");
+    if (logged || storedRole) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [logged]);
 
   return (
     <div className="App">
-      <div style={{ display: myState.loggedIn ? "none" : "block" }}>
-        {console.log(myState.loggedIn)}
-        {/* Navigation Bar */}
+      {/* Hide Navigation Bar if logged in */}
+      {!isLoggedIn && (
         <nav style={styles.navBar}>
           <ul style={styles.navList}>
             <li><Link to="/" style={styles.navLink}>Home</Link></li>
@@ -41,45 +42,31 @@ function App() {
             <li><Link to="/register" style={styles.navLink}>Register</Link></li>
           </ul>
         </nav>
-      </div>
+      )}
 
       {/* Routes */}
       <Routes>
-        <Route path="/" element={<Home />}></Route>
+        <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/login" element={<Login />}> </Route>
+        <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="admin_home" element={<AdminEmployeeDashboard />} />
-        <Route path="doctor_home" element={<DoctorDashboard />} />
-        <Route path="patient_home" element={<PatientDashboard />} />
-        <Route path="assistance_doctor_home" element={<AssistantDoctorHome />} />
-        <Route path="receptionist_home" element={<ReceptionistHome />} />
+        <Route path="/admin_home" element={<AdminEmployeeDashboard />} />
+        <Route path="/doctor_home" element={<DoctorDashboard />} />
+        <Route path="/patient_home" element={<PatientDashboard />} />
+        <Route path="/assistance_doctor_home" element={<AssistantDoctorHome />} />
+        <Route path="/receptionist_home" element={<ReceptionistHome />} />
         <Route path="/logout" element={<Logout />} />
       </Routes>
-    </div >
+    </div>
   );
-};
+}
 
 // Styles for the navigation bar
 const styles = {
-  navBar: {
-    backgroundColor: "#333",
-    padding: "10px",
-  },
-  navList: {
-    display: "flex",
-    justifyContent: "space-around",
-    listStyleType: "none",
-    margin: 0,
-    padding: 0,
-  },
-  navLink: {
-    color: "white",
-    textDecoration: "none",
-    padding: "10px 20px",
-    fontSize: "16px",
-  },
+  navBar: { backgroundColor: "#333", padding: "10px" },
+  navList: { display: "flex", justifyContent: "space-around", listStyleType: "none", margin: 0, padding: 0 },
+  navLink: { color: "white", textDecoration: "none", padding: "10px 20px", fontSize: "16px" },
 };
 
 export default App;

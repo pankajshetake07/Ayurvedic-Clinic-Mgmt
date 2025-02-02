@@ -1,74 +1,195 @@
+import React, { useState, useEffect } from 'react';
+import '../styles/PatientDashboard.css';
+import Logout from './Logout';
+import { useNavigate } from 'react-router-dom';
 
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+const API_BASE = 'http://localhost:8081/xyz';
 
 const PatientDashboard = () => {
+    const [activeTab, setActiveTab] = useState('appointments');
+    const [userName, setUserName] = useState("");
+    const [profile, setProfile] = useState({ email: '', phone: '' });
+    const [treatments, setTreatments] = useState([]);
+    const [feedback, setFeedback] = useState('');
+    const [availableSlots, setAvailableSlots] = useState([]);
+    const [selectedDate, setSelectedDate] = useState('');
+    const [selectedTime, setSelectedTime] = useState('');
+    const [bookingSuccess, setBookingSuccess] = useState(false);
+    const navigate = useNavigate();
+
+    // Check login status
+    useEffect(() => {
+        const storedName = localStorage.getItem('userName');
+        if (!storedName) {
+            navigate("/login");  // Redirect to login if user is not logged in
+        } else {
+            setUserName(storedName);
+        }
+    }, [navigate]);
+
+    // Fetch treatments
+    useEffect(() => {
+        fetch(`${API_BASE}/treatments`)
+            .then((res) => res.json())
+            .then((data) => setTreatments(data))
+            .catch((err) => console.error('Error fetching treatments:', err));
+    }, []);
+
+    // Fetch available slots when date is selected
+    useEffect(() => {
+        if (!selectedDate) return;  // Prevent fetch if no date is selected
+
+        fetch(`http://localhost:8081/appointments/available-slots?appDate=${selectedDate}`)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log("Available Slots:", data);  // Log the response
+                setAvailableSlots(data);  // Update the availableSlots state
+            })
+            .catch((err) => console.error('Error fetching available slots:', err));
+    }, [selectedDate]);   // Only fetch when selectedDate changes
+
+    const handleDateChange = (e) => {
+        const date = e.target.value;
+        setSelectedDate(date);
+        console.log("Selected Date:", date);  // Log the selected date
+    };
+
+
+    const handleAppointmentSubmit = (e) => {
+        e.preventDefault();
+        if (!selectedDate || !feedback) {
+            alert("Please select a date and provide feedback.");
+            return;
+        }
+        const patientId = localStorage.getItem("patientId");
+        alert(patientId)
+        if (!patientId) {
+            alert("Patient not found. Please log in again.");
+            navigate("/login");
+            return;
+        }
+        const formData = {
+            patientId: patientId,
+            appDate: selectedDate,
+            appTime: feedback,
+        };
+        fetch(`http://localhost:8081/appointments/book`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        })
+            .then((res) => console.log(res.json()))
+            .then((data) => {
+                console.log('Appointment booked:', data);
+                setBookingSuccess(true);
+            })
+            .catch((err) => console.error('Error booking appointment:', err));
+    };
+
     return (
-        <div className="container-fluid bg-light min-vh-100">
-            {/* Navbar */}
-            <nav className="navbar navbar-expand-lg navbar-dark bg-primary px-4">
-                <a className="navbar-brand" href="#">Patient Dashboard</a>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav ms-auto">
-                        <li className="nav-item"><a className="nav-link" href="#appointments">Appointments</a></li>
-                        <li className="nav-item"><a className="nav-link" href="#medicines">Prescriptions</a></li>
-                        <li className="nav-item"><a className="nav-link" href="#reports">Health Reports</a></li>
-                        <li className="nav-item"><a className="nav-link" href="#profile">Profile</a></li>
-                        <li className="nav-item"><a className="nav-link btn btn-danger text-white" href="#logout">Logout</a></li>
-                    </ul>
+        <div className="patient-dashboard">
+            {/* Sidebar */}
+            <aside className="dashboard-sidebar">
+                <div className="sidebar-header">
+                    <h2>PrakritiSync</h2>
                 </div>
-            </nav>
+                <nav className="sidebar-nav">
+                    <a href="#appointments" className={activeTab === 'appointments' ? 'active' : ''} onClick={() => setActiveTab('appointments')}>Appointments</a>
+                    <a href="#profile" className={activeTab === 'profile' ? 'active' : ''} onClick={() => setActiveTab('profile')}>Profile</a>
+                    <a href="#treatments" className={activeTab === 'treatments' ? 'active' : ''} onClick={() => setActiveTab('treatments')}>Treatments</a>
+                    <a href="#feedback" className={activeTab === 'feedback' ? 'active' : ''} onClick={() => setActiveTab('feedback')}>Feedback</a>
+                </nav>
+            </aside>
 
-            {/* Dashboard Content */}
-            <div className="container mt-4">
-                <div className="row">
-                    {/* Appointments Section */}
-                    <div className="col-md-6 mb-4" id="appointments">
-                        <div className="card shadow p-3">
-                            <h5 className="card-title">Upcoming Appointments</h5>
-                            <ul className="list-group list-group-flush">
-                                <li className="list-group-item">Dr. Smith - 12th Feb, 10:00 AM</li>
-                                <li className="list-group-item">Dr. Johnson - 15th Feb, 2:00 PM</li>
-                            </ul>
-                        </div>
+            {/* Main Content */}
+            <main className="dashboard-main">
+                <header className="dashboard-header">
+                    <div className="user-info">
+                        <span>Welcome, {userName}</span>
+                        <Logout />
                     </div>
+                </header>
+                <div className="dashboard-content">
 
-                    {/* Prescriptions Section */}
-                    <div className="col-md-6 mb-4" id="medicines">
-                        <div className="card shadow p-3">
-                            <h5 className="card-title">Prescribed Medicines</h5>
-                            <ul className="list-group list-group-flush">
-                                <li className="list-group-item">Paracetamol - 3 times a day</li>
-                                <li className="list-group-item">Amoxicillin - After meals</li>
-                            </ul>
+                    {/* ✅ Appointment Section */}
+                    {activeTab === 'appointments' && (
+                        <div id="appoitment" className="dashboard-card">
+                            <h2>Book an Appointment</h2>
+                            <form onSubmit={handleAppointmentSubmit}>
+                                <div className="form-group">
+                                    <label>Date</label>
+                                    <input
+                                        type="date"
+                                        value={selectedDate}
+                                        onChange={handleDateChange}
+                                        required
+                                    />
+                                </div>
+
+                                <div className="form-group">
+                                    <label htmlFor="appointment-time">Select Time Slot</label>
+                                    <select
+                                        value={feedback}
+                                        onChange={(e) => setFeedback(e.target.value)}
+                                        required
+                                    >
+                                        <option value="">Select a time</option>
+                                        {availableSlots.length > 0 ? (
+                                            availableSlots.map((slot) => (
+                                                <option key={slot.id} value={slot.slotTime}>
+                                                    {slot.slotTime}
+                                                </option>
+                                            ))
+                                        ) : (
+                                            <option disabled>No slots available</option>
+                                        )}
+                                    </select>
+                                </div>
+
+                                <button type="submit">Book Appointment</button>
+                                {bookingSuccess && <p className="success-message">✅ Appointment booked successfully!</p>}
+                            </form>
                         </div>
-                    </div>
+                    )}
+
+                    {/* ✅ Treatments Section */}
+                    {activeTab === 'treatments' && (
+                        <div className="dashboard-card">
+                            <h2>Your Treatments & Medicines</h2>
+                            {treatments.length > 0 ? (
+                                treatments.map((treatment, index) => (
+                                    <div className="medical-record" key={index}>
+                                        <h3>{treatment.name}</h3>
+                                        <p>{treatment.details}</p>
+                                    </div>
+                                ))
+                            ) : (
+                                <p>No treatments available.</p>
+                            )}
+                        </div>
+                    )}
+
+                    {/* ✅ Feedback Section */}
+                    {activeTab === 'feedback' && (
+                        <div className="dashboard-card">
+                            <h2>Give Feedback</h2>
+                            <form>
+                                <div className="form-group">
+                                    <label>Your Feedback</label>
+                                    <textarea
+                                        value={feedback}
+                                        onChange={(e) => setFeedback(e.target.value)}
+                                        required
+                                    />
+                                </div>
+                                <button type="submit">Submit Feedback</button>
+                            </form>
+                        </div>
+                    )}
                 </div>
-
-                <div className="row">
-                    {/* Health Reports Section */}
-                    <div className="col-md-6 mb-4" id="reports">
-                        <div className="card shadow p-3">
-                            <h5 className="card-title">Health Reports & Records</h5>
-                            <button className="btn btn-primary">View Reports</button>
-                        </div>
-                    </div>
-
-                    {/* Profile Section */}
-                    <div className="col-md-6 mb-4" id="profile">
-                        <div className="card shadow p-3">
-                            <h5 className="card-title">Profile & Settings</h5>
-                            <p><strong>Name:</strong> John Doe</p>
-                            <p><strong>Age:</strong> 29</p>
-                            <p><strong>Contact:</strong> johndoe@example.com</p>
-                            <button className="btn btn-warning">Edit Profile</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </main>
         </div>
     );
 };
