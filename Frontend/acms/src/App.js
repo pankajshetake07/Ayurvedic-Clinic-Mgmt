@@ -6,10 +6,11 @@ import About from "./components/About";
 import Home from "./components/Home";
 import Contact from "./components/Contact";
 import Login from "./components/Login";
-import AssistantDoctorHome from "./components/AssistantDoctorHome";
+// import AssistantDoctorHome from "./components/AssistantDoctorHome";
+import AssistantDoctor from "./components/AssistantDoctor";
 import ReceptionistHome from "./components/receptionistHome";
 import { useSelector } from "react-redux";
-import Logout from "./components/Logout";
+import Logout from "./components/logout";
 import Register from './components/Register'
 import PatientDashboard from "./components/PatientDashboard";
 import DoctorDashboard from "./components/DoctorDashboard";
@@ -54,7 +55,7 @@ function App() {
         <Route path="/admin_home" element={<AdminEmployeeDashboard />} />
         <Route path="/doctor_home" element={<DoctorDashboard />} />
         <Route path="/patient_home" element={<PatientDashboard />} />
-        <Route path="/assistance_doctor_home" element={<AssistantDoctorHome />} />
+        <Route path="/assistance_doctor_home/*" element={<AssistantDoctor />} />
         <Route path="/receptionist_home" element={<ReceptionistHome />} />
         <Route path="/logout" element={<Logout />} />
       </Routes>

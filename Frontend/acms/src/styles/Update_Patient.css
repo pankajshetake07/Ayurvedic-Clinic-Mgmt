@@ -1,0 +1,52 @@
+#update {
+ display: block;  /* Make it a block element */
+ margin: 10px auto;  /* Center horizontally */
+ width: 50%; /* Adjust width as needed */
+ text-align: center;
+ padding: 10px 15px;
+ border: none;
+ cursor: pointer;
+ font-size: 16px;
+ font-weight: bold;
+ border-radius: 5px;
+}
+
+/* Primary Button Styling */
+.btn-primary {
+ background-color: #1a237e;
+ color: white;
+ padding: 12px 20px;
+ border-radius: 5px;
+ border: none;
+ font-size: 16px;
+ cursor: pointer;
+ transition: background-color 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.btn-primary:hover {
+ background-color: #0d1b5e;
+}
+
+/* Additional Margin for Spacing */
+.btn-primary.mb-3 {
+ margin-right: 3%;
+ background-color: #0d1b5e;
+ width: auto;
+}
+#up{
+ text-align: center;
+ color:black;
+}
+
+#fupdate{
+ background-color: rgb(247, 248, 249);
+ width: 1000px;
+
+ width: 1000px;
+ /* background-color:; */
+ padding: 20px;
+ border-radius: 10px;
+ box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+ margin: auto;
+}

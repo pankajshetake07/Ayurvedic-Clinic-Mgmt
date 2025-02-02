@@ -1,0 +1,61 @@
+/* AddPatient.css */
+
+body {
+ background-color: #f4f7fc;
+ font-family: Arial, sans-serif;
+}
+
+#add {
+ text-align: center;
+ color:black;
+ margin-top:20px;
+ margin-bottom: 30px;
+}
+
+#add_p{
+ width: 1000px;
+ background-color: whitesmoke;
+ padding: 20px;
+ border-radius: 10px;
+ box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+ margin: auto;
+}
+
+.form-label {
+ font-weight: bold;
+ color: black;
+}
+
+.form-control {
+ width: 100%;
+ padding: 8px;
+ margin-bottom: 15px;
+ border: 1px solid #ccc;
+ border-radius: 5px;
+}
+
+#btn {
+ width: 100px;
+ padding: 10px;
+ font-size: 16px;
+ border: none;
+ border-radius: 5px;
+ cursor: pointer;
+}
+
+.btn-primary {
+ 
+ background-color: #1a237e;
+ color: white;
+}
+
+.btn-primary:hover {
+ background-color: #0d1b5e;
+}
+
+.btn-primary.mb-3 {
+ margin-right: 3%;
+ background-color:  #0d1b5e;
+ width: auto;
+}
+
