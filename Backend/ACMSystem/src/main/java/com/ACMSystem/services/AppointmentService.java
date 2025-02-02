@@ -10,11 +10,14 @@ import com.ACMSystem.repository.AppointmentRepository;
 import com.ACMSystem.repository.PatientRepository;
 import com.ACMSystem.repository.SlotRepository;
 
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 @Service
 public class AppointmentService {
+	
+	
 	@Autowired
     private AppointmentRepository appointmentRepository;
 
@@ -29,35 +32,52 @@ public class AppointmentService {
         // Fetch all slots for the date that are available
         return slotRepository.findByDateAndIsAvailable(date, true);
     }
+    
+    // Getting patientId from userId
+    public Integer getPatientIdFromUserId(int userId) {
+        System.out.println("Received userId: " + userId);  // Log userId
 
-    // Book an appointment
-    public Appointment bookAppointment(Integer patientId, Integer slotId, LocalDate appDate, LocalTime appTime) {
-    	// Get the patient
+        if (userId == 0) {
+            throw new RuntimeException("Invalid User ID: " + userId);
+        }
+
+        Patient patient = patientRepository.findByUser_Uid(userId)
+            .orElseThrow(() -> new RuntimeException("Patient not found for User ID: " + userId));
+
+        return patient.getPid();
+    }
+
+
+ // Book an appointment
+    public Appointment bookAppointment(int userId, int slotId, LocalDate appDate, LocalTime appTime) {
+    	
+        Integer patientId = getPatientIdFromUserId(userId);
+        
+
+        // Get the patient
         Patient patient = patientRepository.findById(patientId)
-            .orElseThrow(() -> {
-                System.out.println("Patient not found with ID: " + patientId);
-                return new RuntimeException("Patient not found");
-            });
+            .orElseThrow(() -> new RuntimeException("Patient not found with ID: " + patientId));
+
+        // Check if the patient already has an appointment at this date and time
+        if (appointmentRepository.existsByPatientAndAppDateAndAppTime(patient, appDate, appTime)) {
+            throw new RuntimeException("You already have an existing appointment at this time.");
+        }
 
         // Get the slot
         Slot slot = slotRepository.findById(slotId)
-            .orElseThrow(() -> {
-                System.out.println("Slot not found with ID: " + slotId);
-                return new RuntimeException("Slot not found");
-            });
+            .orElseThrow(() -> new RuntimeException("Slot not found with ID: " + slotId));
 
         // Check if the slot is available
         if (!slot.isAvailable()) {
-            System.out.println("Slot " + slotId + " is already booked");
-            throw new RuntimeException("Slot is already booked");
+            throw new RuntimeException("Slot is already booked.");
         }
 
         // Mark the slot as unavailable
         slot.setAvailable(false);
-        slotRepository.save(slot); // Save the updated slot
+        slotRepository.save(slot);
 
         // Create the appointment
         Appointment appointment = new Appointment(patient, slot, appDate, appTime, AppointmentStatus.BOOKED);
-        return appointmentRepository.save(appointment); // Save the appointment
+        return appointmentRepository.save(appointment);
     }
 }

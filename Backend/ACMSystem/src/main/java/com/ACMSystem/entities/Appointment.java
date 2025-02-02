@@ -17,7 +17,7 @@ public class Appointment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long aid; // Appointment ID (auto-incremented)
+    private int aid; // Appointment ID (auto-incremented)
 
     @ManyToOne
     @JoinColumn(name = "pid")  // Patient ID (foreign key)
@@ -51,11 +51,11 @@ public class Appointment {
     }
 
     // Getters and Setters
-    public Long getAid() {
+    public int getAid() {
         return aid;
     }
 
-    public void setAid(Long aid) {
+    public void setAid(int aid) {
         this.aid = aid;
     }
 

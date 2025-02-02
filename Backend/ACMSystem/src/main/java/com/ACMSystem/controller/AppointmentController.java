@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/appointments")
 @CrossOrigin(origins = "http://localhost:3000")
@@ -19,21 +20,27 @@ public class AppointmentController {
 	@Autowired
     private AppointmentService appointmentService;
 
-    // Endpoint to get available slots for a given date
+    //Get available slots for a given date
     @GetMapping("/available-slots")
     public List<Slot> getAvailableSlots(@RequestParam("appDate") String appDate) {
         LocalDate date = LocalDate.parse(appDate);  // Convert string to LocalDate
         return appointmentService.getAvailableSlots(date);
     }
 
-    // Endpoint to book an appointment
+    //Book an appointment
     @PostMapping("/book")
     public Appointment bookAppointment(@RequestBody AppointmentRequest request) {
-    	Integer id = request.getPatientId();
-    	System.out.println("patiend id "+id);
-        LocalDate date = LocalDate.parse(request.getAppDate());
-        LocalTime time = LocalTime.parse(request.getAppTime());
-        return appointmentService.bookAppointment(request.getPatientId(), request.getSlotId(), date, time);
+        int userId = request.getUserId(); // User ID sent from frontend
+        int slotId = request.getSlotId();
+        LocalDate appDate = request.getAppDate();
+        LocalTime appTime = request.getAppTime();
+        //System.out.println(userId+"\n"+slotId+"\n"+appDate+"\n"+appTime);
+        if (userId == 0) {
+            throw new RuntimeException("Invalid User ID: " + userId); 
+        }
+
+        
+        return appointmentService.bookAppointment(userId, slotId, appDate, appTime);
     }
 
 }

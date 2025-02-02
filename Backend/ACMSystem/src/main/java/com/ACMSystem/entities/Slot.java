@@ -15,7 +15,7 @@ public class Slot {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="slot_id")
-    private Integer id; // Slot ID (auto-incremented)
+    private int id; // Slot ID (auto-incremented)
 
     @Column(name="slot_time")
     private LocalTime slotTime; // Time for the slot (e.g., 11:00:00)
@@ -35,11 +35,11 @@ public class Slot {
     }
 
     // Getters and Setters
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
