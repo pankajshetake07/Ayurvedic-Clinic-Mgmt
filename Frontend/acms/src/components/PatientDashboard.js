@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/PatientDashboard.css';
-import Logout from './Logout';
+import Logout from './logout';
 import { useNavigate } from 'react-router-dom';
 
 const API_BASE = 'http://localhost:8081';
