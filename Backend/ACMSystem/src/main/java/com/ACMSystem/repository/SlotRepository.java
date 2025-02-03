@@ -12,6 +12,7 @@ import com.ACMSystem.entities.Slot;
 public interface SlotRepository extends JpaRepository<Slot, Integer> {
 	// Find available slots for a specific date
     List<Slot> findByDateAndIsAvailable(LocalDate date, boolean isAvailable);
+    List<Slot> findByDate(LocalDate date);
     
     // Check if slots exist for a specific date
     boolean existsByDate(LocalDate date);

@@ -27,4 +27,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 	public Optional<User> findByFname(String fname);
 	
 	List<User> findByRole(Role role); // Find users by role (e.g., "Doctor", "Patient")
+	
+	User findByUid(int uid);
+	
 }

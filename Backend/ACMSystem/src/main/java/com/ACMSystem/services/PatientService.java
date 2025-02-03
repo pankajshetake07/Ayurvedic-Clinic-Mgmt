@@ -1,6 +1,8 @@
 package com.ACMSystem.services;
 
+import java.lang.reflect.Field;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,5 +74,28 @@ public class PatientService {
 	public Optional<Patient> findPatientById(int id) {
 		return patientRepository.findById(id);
 	}
+	
+	public User getPatientByUserId(int uid) {
+        return patientRepository.getPatientByUserId(uid);
+    }
+	
+	public User updatePatientFields(int uid, Map<String, Object> updates) {
+        User user = userRepository.findByUid(uid);
+        if (user == null) {
+            throw new RuntimeException("Patient not found for UID: " + uid);
+        }
+
+        updates.forEach((key, value) -> {
+            try {
+                Field field = User.class.getDeclaredField(key);
+                field.setAccessible(true);
+                field.set(user, value);
+            } catch (Exception e) {
+                throw new RuntimeException("Invalid field: " + key);
+            }
+        });
+
+        return userRepository.save(user);
+    }
 	
 }

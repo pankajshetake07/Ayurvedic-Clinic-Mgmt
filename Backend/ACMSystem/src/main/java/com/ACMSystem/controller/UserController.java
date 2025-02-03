@@ -66,5 +66,7 @@ public class UserController {
 	public User updateUser(@PathVariable int id, @RequestBody UserDTO userDTO) {
         return userService.updateUser(id, userDTO);
     }
+	
+	
 
 }
