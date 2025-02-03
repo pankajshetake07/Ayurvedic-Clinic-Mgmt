@@ -1,284 +1,142 @@
-/* ========== Global Settings ========== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* General Styles */
+:root {
+    --primary-green: #2d5d4b;
+    --secondary-beige: #d4a96c;
+    --background-cream: #f8f5f1;
+    --text-dark: #2c3e50;
 }
 
 body {
+    margin: 0;
     font-family: 'Poppins', sans-serif;
-    background-color: #f5f7fa;
+    background-color: var(--background-cream);
+    color: var(--text-dark);
 }
 
-/* ========== Patient Dashboard Layout ========== */
 .patient-dashboard {
-    display: grid;
-    grid-template-columns: 250px 1fr;
+    display: flex;
     min-height: 100vh;
-    transition: all 0.3s ease;
+    background-color: var(--background-cream);
 }
 
-/* ========== Sidebar ========== */
+/* Sidebar Styles */
 .dashboard-sidebar {
-    background: #2d5d4b;
-    color: white;
-    padding: 20px;
-    position: fixed;
     width: 250px;
-    height: 100%;
-    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+    background-color: var(--primary-green);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar-header {
-    padding: 20px;
-    border-bottom: 1px solid #3a7560;
     text-align: center;
+    margin-bottom: 30px;
 }
 
 .sidebar-header h2 {
     font-size: 24px;
-    font-weight: 600;
+    margin: 0;
     color: #fff;
-    letter-spacing: 1px;
 }
 
-/* Sidebar Navigation */
+.sidebar-header p {
+    font-size: 14px;
+    color: var(--secondary-beige);
+    margin: 5px 0 0;
+}
+
 .sidebar-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    flex: 1;
 }
 
 .sidebar-nav a {
-    color: white;
-    text-decoration: none;
-    padding: 15px;
-    border-radius: 8px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    padding: 12px 15px;
+    margin: 10px 0;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    border-radius: 5px;
     transition: all 0.3s ease;
-    font-size: 16px;
-    font-weight: 500;
 }
 
 .sidebar-nav a:hover {
-    background: #3a7560;
-    transform: translateX(5px);
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
 }
 
 .sidebar-nav a.active {
-    background: #d4a96c;
+    background-color: var(--secondary-beige);
+    color: var(--primary-green);
     font-weight: 600;
 }
 
-/* ========== Main Content ========== */
+.sidebar-nav a i {
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    text-align: center;
+}
+
+/* Main Content Styles */
 .dashboard-main {
-    margin-left: 250px;
-    width: calc(100% - 250px);
-    padding-top: 80px;
+    flex: 1;
+    padding: 20px;
+    background-color: var(--background-cream);
 }
 
-/* ========== Header ========== */
 .dashboard-header {
-    background: white;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: calc(100% - 250px);
-    height: 70px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+    margin-bottom: 30px;
 }
 
-/* User Info */
-.user-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    color: #2d5d4b;
-    font-weight: 600;
+.dashboard-header h1 {
+    font-size: 28px;
+    margin: 0;
+    color: var(--primary-green);
+}
+
+.dashboard-header p {
     font-size: 16px;
+    color: var(--text-dark);
+    margin: 5px 0 0;
 }
 
-/* Logout Button */
-.logout-btn {
-    background: #d4a96c;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background 0.3s ease, transform 0.2s ease;
-}
-
-.logout-btn:hover {
-    background: #c2995a;
-    transform: scale(1.05);
-}
-
-/* ========== Dashboard Content ========== */
 .dashboard-content {
-    padding: 30px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Section Cards */
-.dashboard-card {
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    margin-bottom: 25px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.dashboard-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-}
-
-/* Headings */
-.dashboard-card h2 {
-    color: #2d5d4b;
-    font-size: 22px;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #2d5d4b;
-    padding-bottom: 10px;
-    font-weight: 600;
-}
-
-/* ========== Book Appointment Section ========== */
-#appointment {
-    background: #f9fdfb;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-    margin: 50px auto;
-    text-align: center;
-    border: 2px solid #2d5d4b;
-    display: block !important;
-    width: 500px !important;
-    margin: auto !important;
-}
-
-/* Appointment Heading */
-#appointment h2 {
-    font-size: 24px;
-    color: #2d5d4b;
-    margin-bottom: 20px;
-    border-bottom: 3px solid #2d5d4b;
-    padding-bottom: 10px;
-    font-weight: 600;
-}
-
-/* Form Groups */
-#appointment .form-group {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-    width: 100%;
-}
-
-#appointment .form-group label {
-    font-size: 16px;
-    font-weight: 600;
-    color: #23483a;
-    width: 100%;
-    text-align: left;
-}
-
-/* Inputs */
-#appointment input,
-#appointment select {
-    width: 100%;
-    padding: 12px;
-    border: 2px solid #2d5d4b;
-    border-radius: 8px;
-    font-size: 16px;
-    text-align: center;
-    background: #fff;
-    transition: 0.3s ease;
-}
-
-#appointment input:focus,
-#appointment select:focus {
-    border-color: #d4a96c;
-    outline: none;
-    box-shadow: 0 0 8px rgba(45, 93, 75, 0.2);
-}
-
-/* Button */
-#appointment button {
-    background: #d4a96c;
-    color: white;
-    border: none;
-    padding: 14px 30px;
-    border-radius: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s ease;
-    width: 100%;
-    font-weight: bold;
-}
-
-#appointment button:hover {
-    background: #c2995a;
-    transform: scale(1.05);
-}
-
-/* Success Message */
-#appointment .success-message {
-    color: #2d5d4b;
-    font-size: 16px;
-    font-weight: bold;
-    margin-top: 15px;
-    padding: 10px;
-    background: #eaf6ed;
-    border: 2px solid #2d5d4b;
-    border-radius: 8px;
-}
-
-/* ========== Responsive Design ========== */
+/* Responsive Design */
 @media (max-width: 768px) {
     .patient-dashboard {
-        grid-template-columns: 1fr;
+        flex-direction: column;
     }
 
     .dashboard-sidebar {
-        position: relative;
         width: 100%;
         height: auto;
+        padding: 10px;
+    }
+
+    .sidebar-nav {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .sidebar-nav a {
+        margin: 5px;
+        padding: 10px;
+        text-align: center;
     }
 
     .dashboard-main {
-        margin-left: 0;
-        width: 100%;
-        padding-top: 70px;
-    }
-
-    .dashboard-header {
-        width: 100%;
-    }
-
-    #appointment {
-        width: 90%;
-        padding: 20px;
-    }
-
-    #appointment input,
-    #appointment select {
-        width: 100%;
-    }
-
-    #appointment button {
-        width: 100%;
+        padding: 10px;
     }
 }

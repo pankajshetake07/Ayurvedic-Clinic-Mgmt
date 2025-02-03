@@ -11,6 +11,7 @@ import "../styles/AssistantDoctor.css"; // Import the CSS file
 const logout = () => {
   if (window.confirm("Do you want to logout?")) {
     console.log("Logged out");
+
   }
 };
 
@@ -20,13 +21,13 @@ function AssistantDoctor() {
       {/* Navigation Bar */}
       <nav className="top-navbar">
         <div>
-        <p className="doctor-name"><h3><strong>Dr.Pankaj Shetake-Patil</strong></h3><em>(Assistant Doctor)</em></p>
+          <p className="doctor-name"><h3><strong>Dr.Pankaj Shetake-Patil</strong></h3><em>(Assistant Doctor)</em></p>
         </div>
-        <ul className="nav-links"  style={{ listStyle: "none" , padding:10 }}>
-        
-        <li>
+        <ul className="nav-links" style={{ listStyle: "none", padding: 10 }}>
+
+          <li>
             <NavLink to="/">
-             
+
             </NavLink>
           </li>
           <li>
@@ -56,20 +57,20 @@ function AssistantDoctor() {
       </nav>
 
       {/* Main Content */}
-    
+
       <main className="main-content">
-      <div className="main-box">
+        <div className="main-box">
           {/* <h1>Welcome to Assistant Doctor Dashboard</h1>
           <p>Manage patients, appointments, and medical records efficiently.</p> */}
           <Routes>
-          <Route path="/" element={<div><h1>Welcome ! Welcome ! Pankaj Shetake-Patil</h1></div>} />
-    <Route path="/adashboard" element={<Adashboard />} />
-    <Route path="/patientDetails" element={<AddPatient />} />
-    <Route path="/appointment" element={<View_Appointment/>} />
-    <Route path="/updatepatient" element={<Update_Patient />} />
-  </Routes>
- 
-      </div>
+            <Route path="/" element={<div><h1>Welcome ! Welcome ! Pankaj Shetake-Patil</h1></div>} />
+            <Route path="/adashboard" element={<Adashboard />} />
+            <Route path="/patientDetails" element={<AddPatient />} />
+            <Route path="/appointment" element={<View_Appointment />} />
+            <Route path="/updatepatient" element={<Update_Patient />} />
+          </Routes>
+
+        </div>
       </main>
     </div>
   );

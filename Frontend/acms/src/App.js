@@ -32,7 +32,7 @@ function App() {
   return (
     <div className="App">
       {/* Hide Navigation Bar if logged in */}
-      {!isLoggedIn && (
+      {isLoggedIn && (
         <nav style={styles.navBar}>
           <ul style={styles.navList}>
             <li><Link to="/" style={styles.navLink}>Home</Link></li>
