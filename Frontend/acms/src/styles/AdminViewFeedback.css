@@ -1,0 +1,75 @@
+/* Container Styling */
+/* .admin-feedback-container {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ padding: 20px;
+ background-color: #f4f4f9;
+ min-height: 100vh;
+} */
+
+/* Title Styling */
+.admin-feedback-title {
+ color: #333;
+ font-size: 28px;
+ font-weight: bold;
+ margin-bottom: 20px;
+}
+
+/* Table Wrapper */
+.feedback-table-wrapper {
+ width: 900px;
+ background-color: white;
+ border-radius: 10px;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ overflow: hidden;
+}
+
+/* Table Styling */
+.feedback-table {
+ width: 100%;
+ border-collapse: collapse;
+}
+
+/* Table Header */
+.feedback-table thead {
+ background-color: rgb(132, 17, 132);
+ color: white;
+ font-size: 18px;
+}
+
+/* Table Cells */
+.feedback-table th, 
+.feedback-table td {
+ padding: 12px;
+ text-align: center;
+ border: 1px solid #ddd;
+}
+
+/* Alternating Row Colors */
+.feedback-table tbody tr:nth-child(even) {
+ background-color: #f2f2f2;
+}
+
+/* Hover Effect */
+.feedback-table tbody tr:hover {
+ background-color: #ddd;
+ transition: 0.3s ease-in-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+ .feedback-table-wrapper {
+     width: 100%;
+ }
+
+ .admin-feedback-title {
+     font-size: 24px;
+ }
+
+ .feedback-table th, 
+ .feedback-table td {
+     padding: 8px;
+     font-size: 14px;
+ }
+}

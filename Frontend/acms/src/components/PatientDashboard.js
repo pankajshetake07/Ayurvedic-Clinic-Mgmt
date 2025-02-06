@@ -205,7 +205,7 @@
 // export default PatientDashboard;
 import React, { useState, useEffect } from 'react';
 import '../styles/PatientDashboard.css';
-import Logout from './Logout';
+import Logout from './logout';
 import Appointments from './Appointment';
 import Treatments from './Treatments';
 import Profile from './PatientProfile';

@@ -10,11 +10,12 @@ import Login from "./components/Login";
 import AssistantDoctor from "./components/AssistantDoctor";
 import ReceptionistHome from "./components/receptionistHome";
 import { useSelector } from "react-redux";
-import Logout from "./components/Logout";
+import Logout from "./components/logout";
 import Register from './components/Register'
 import PatientDashboard from "./components/PatientDashboard";
 import DoctorDashboard from "./components/DoctorDashboard";
-import AdminEmployeeDashboard from "./components/AdminEmployeeDashboard";
+// import AdminEmployeeDashboard from "./components/AdminEmployeeDashboard";
+import AdminDashboard from "./components/AdminDashboard";
 
 function App() {
   const logged = useSelector((state) => state.logged.loggedIn); // Redux state for login
@@ -52,7 +53,7 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/admin_home" element={<AdminEmployeeDashboard />} />
+        <Route path="/admin_home/*" element={<AdminDashboard />} />
         <Route path="/doctor_home" element={<DoctorDashboard />} />
         <Route path="/patient_home" element={<PatientDashboard />} />
         <Route path="/assistance_doctor_home/*" element={<AssistantDoctor />} />

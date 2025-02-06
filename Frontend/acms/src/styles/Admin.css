@@ -1,0 +1,218 @@
+/* .sidebar {
+ background-color:lavender;
+ color: darkblue;
+ height: 100vh;
+ width: 300px;
+ display: flex;
+ flex-direction: column;
+ transition: width 0.3s ease-in-out;
+}
+
+.sidebar-header {
+ padding: 15px;
+ display: flex;
+ justify-content: space-between;
+}
+
+.profile {
+ text-align: center;
+ padding: 20px;
+ border-bottom: 1px solid #3b82f6;
+}
+
+.profile .icon {
+ font-size: 40px;
+}
+
+.profile h2 {
+ font-size: 18px;
+ margin-top: 10px;
+}
+
+nav ul {
+ list-style: none;
+ padding: 10px;
+}
+
+nav li {
+ padding: 10px;
+}
+
+nav a {
+ display: flex;
+ align-items: center;
+ color: darkblue;
+ text-decoration: none;
+ padding: 10px;
+ transition: 0.3s;
+ width: 200px;
+}
+
+nav a:hover {
+ background-color:aliceblue;
+ border-radius: 5px;
+}
+
+.icon {
+ margin-right: 10px;
+}
+
+.logout {
+ margin-top: auto;
+ padding: 20px;
+ text-align: center;
+}
+
+.logout button {
+ background-color: #ef4444;
+ color: white;
+ padding: 10px;
+ border: none;
+ width: 200px;
+ cursor: pointer;
+ font-size: 16px;
+ transition: 0.3s;
+}
+
+.logout button:hover {
+ background-color: #dc2626;
+}
+
+
+.profile {
+ text-align: center;
+ padding: 20px;
+}
+
+.logo {
+
+ width: 160px;
+ height: 100px;
+ margin-bottom: 10px; 
+}
+
+.sidebar-footer {
+ margin-top: auto;
+ padding: 20px;
+ display: flex;
+ justify-content: center;
+}
+
+
+ */
+
+
+
+ /* Ensure header spans full width */
+.dashboard-header {
+ width: 100%;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ background-color: white;
+ padding: 15px 20px;
+ color: black;
+ box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+ position: fixed;
+ top: 0;
+ left: 0;
+ z-index: 1000;
+}
+
+/* Logo and Admin Name */
+.logo-container {
+ display: flex;
+ align-items: center;
+}
+
+.logo {
+ height: 50px;
+ width: 60px;
+ margin-right: 10px;
+}
+
+.admin-name {
+ font-size: 18px;
+ font-weight: bold;
+ margin-right: 20px;
+} 
+
+/* Navigation buttons */
+.nav-buttons {
+ display: flex;
+ flex-wrap: wrap;
+ gap: 10px;
+}
+
+.nav-button {
+ background-color: rgb(7, 124, 75);
+ color: white;
+ padding: 8px 12px;
+ border-radius: 8px;
+ text-decoration: none;
+ font-size: 14px;
+ display: flex;
+ align-items: center;
+ gap: 6px;
+ transition: background 0.3s ease;
+}
+
+.nav-button:hover {
+ background-color:rgb(28, 111, 28)
+ ;
+}
+
+/* Logout Button */
+.logout-container {
+ margin-left: auto;
+}
+
+.logout-button {
+ background-color: #e74c3c;
+ color: white;
+ padding: 8px 15px;
+ border-radius: 8px;
+ text-decoration: none;
+ font-size: 14px;
+ transition: background 0.3s ease;
+}
+
+.logout-button:hover {
+ background-color: #c0392b;
+}
+/* Container for Admin Info */
+.admin-info {
+ display: flex;
+ flex-direction: column;  /* Stack items vertically */
+ align-items: flex-start; /* Align text to the left */
+ margin-left: 10px;
+}
+
+/* Admin Name Styling */
+.admin-name {
+ font-size: 18px;
+ font-weight: bold;
+ margin: 0;
+}
+
+/* Role (System Administrator) Styling */
+.admin-role {
+ font-size: 14px;
+ color:black; /* Lighter color for role */
+ margin-top: -2px; /* Adjust spacing */
+}
+/* Footer */
+
+.dashboard-footer{
+ background-color: #0e8da6;
+ height: 100px;
+ color: white;
+ text-align: center;
+ padding: 10px;
+ position: fixed; /* Keep it at the bottom */
+ bottom: 0;
+ left: 0;
+ width: 100vw; /* Full width of the viewport */
+ font-size: 14px;
+ z-index: 1000; /* Ensure it's above other elements */
+}

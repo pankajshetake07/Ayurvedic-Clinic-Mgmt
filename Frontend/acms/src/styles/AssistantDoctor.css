@@ -33,15 +33,39 @@
 }
 
 /* Center Content */
-.main-content {
+/* .main-content {
  flex: 1;
- padding: 100px 40px; /* Increased padding to prevent overlap with navbar */
+ padding: 100px 40px; Increased padding to prevent overlap with navbar
  display: flex;
  justify-content: center;
  align-items: center;
  width: 100vw;
  position-area: inherit;
+} */
+
+/* Sidebar */
+.sidebar {
+ width: 250px; /* Fixed width for sidebar */
+ min-height: 100vh;
+ background: #eef2ff; /* Light blue background */
+ padding: 20px;
+ position: fixed; /* Keeps sidebar fixed */
+ left: 0;
+ top: 0;
+ bottom: 0;
 }
+
+/* Main content area */
+.main-content {
+ flex-grow: 1;
+ margin-left: 500px; /* Same width as the sidebar */
+ padding: 20px;
+ display: flex;
+ align-items: flex-start; /* Aligns content to top-left */
+ justify-content: flex-start; /* Aligns content to left */
+ width: calc(100vw - 250px); /* Takes the remaining width */
+}
+
 
 /* Full-width Navigation Links */
 .nav-links {

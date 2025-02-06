@@ -1,0 +1,69 @@
+/* Container Styling */
+
+
+/* Title Styling */
+.admin-appointments-title {
+ color: #333;
+ font-size: 28px;
+ font-weight: bold;
+ margin-bottom: 20px;
+}
+
+/* Table Wrapper */
+.appointments-table-wrapper {
+ width: 1000px;
+ background-color: white;
+ border-radius: 10px;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ overflow: hidden;
+}
+
+/* Table Styling */
+.appointments-table {
+ width: 100%;
+ border-collapse: collapse;
+}
+
+/* Table Header */
+.appointments-table thead {
+ background-color: #007BFF;
+ color: white;
+ font-size: 18px;
+}
+
+/* Table Cells */
+.appointments-table th, 
+.appointments-table td {
+ padding: 12px;
+ text-align: center;
+ border: 1px solid #f2f2f2;
+}
+
+/* Alternating Row Colors */
+.appointments-table tbody tr:nth-child(even) {
+ background-color: #f2f2f2;
+}
+
+/* Hover Effect */
+.appointments-table tbody tr:hover {
+ background-color: #ddd;
+ transition: 0.3s ease-in-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+ .appointments-table-wrapper {
+     width: 100%;
+ }
+
+ .admin-appointments-title {
+     font-size: 24px;
+     text-align: left;
+ }
+
+ .appointments-table th, 
+ .appointments-table td {
+     padding: 8px;
+     font-size: 14px;
+ }
+}
