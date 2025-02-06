@@ -126,7 +126,7 @@ function AdminDashboard() {
       {/* Header with Logo, Admin Name & NavLinks */}
       <header className="dashboard-header">
         <div className="logo-container">
-          <img src={Logo} alt="PrakritiSync Logo" className="logo" />
+          <img src={Logo} alt="PrakritiSync Logo" className="logo"/>
           
 
   <div className="admin-info">
@@ -140,9 +140,9 @@ function AdminDashboard() {
           <NavLink to="/admin_home/createaccount" className="nav-button">
             <FaUserPlus /> Create Accounts
           </NavLink>
-          <NavLink to="/admin_home/deletepatient" className="nav-button">
+          {/* <NavLink to="/admin_home/deletepatient" className="nav-button">
             <FaTrash /> Delete Patients
-          </NavLink>
+          </NavLink> */}
           <NavLink to="/admin_home/viewfeedback" className="nav-button">
             <FaComments /> View Feedback
           </NavLink>
@@ -169,7 +169,7 @@ function AdminDashboard() {
         <div className="content-box">
           <Routes>
             <Route path="/createaccount" element={<CreateAccount />} /> 
-            <Route path="/deletepatient" element={<AdminDeletePatient />} /> 
+            {/* <Route path="/deletepatient" element={<AdminDeletePatient />} />  */}
             <Route path="/viewfeedback" element={<AdminViewFeedback />} />
             <Route path="/viewappointments" element={<AdminViewAppointments />} />
             <Route path="/deleteemployee" element={<AdminDeleteEmployee />} />
@@ -179,7 +179,9 @@ function AdminDashboard() {
         </div>
        
       </main>
-
+      {/* <footer className="dashboard-footer">
+        <p>@2025 Admin Panel</p>
+      </footer> */}
     </div>
   );
 }

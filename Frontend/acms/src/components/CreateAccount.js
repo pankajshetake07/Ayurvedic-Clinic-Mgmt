@@ -128,12 +128,13 @@ function CreateAccount() {
           </label>
         </div>
 
-        <label>Status:</label>
-        <select name="status" value={info.user.status} onChange={(e) => dispatch({ type: "update", fld: "status", val: e.target.value })} required>
-          <option value="">Select Status</option>
-          <option value="Active">Active</option>
-          <option value="Inactive">Inactive</option>
-        </select>
+        {/* <label>Gender:</label>
+        <select name="gender" value={info.user.gender} onChange={(e) => dispatch({ type: "update", fld: "gender", val: e.target.value })} required>
+          <option value="">Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select> */}
 
         <label>Email:</label>
         <input type="email" name="email" value={info.user.email} onChange={(e) => dispatch({ type: "update", fld: "email", val: e.target.value })} placeholder="Enter the Email" required />

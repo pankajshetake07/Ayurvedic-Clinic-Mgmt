@@ -45,7 +45,7 @@ const MedicineForm = () => {
 
         <label>Medicine Form:</label>
         <select name="form_name" value={medicine.form_name} onChange={handleChange}  style={{height:"40px"}} required>
-          <option value="" disabled>Select Form</option>
+          <option value="" disabled>Select Medicine Form</option>
           <option value="Liquid">Liquid</option>
           <option value="Tablet">Tablet</option>
           <option value="Powder">Powder</option>
