@@ -19,7 +19,7 @@ const MedicineForm = () => {
     e.preventDefault();
 
     axios
-      .post("http://localhost:8081/medicines/add", medicine)
+      .post("http://localhost:8092/medicines/add", medicine)
       .then((response) => {
         alert("Medicine added successfully!");
         setMedicine({

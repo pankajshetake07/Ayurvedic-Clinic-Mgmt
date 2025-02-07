@@ -8,7 +8,7 @@ import Contact from "./components/Contact";
 import Login from "./components/Login";
 // import AssistantDoctorHome from "./components/AssistantDoctorHome";
 import AssistantDoctor from "./components/AssistantDoctor";
-import ReceptionistHome from "./components/receptionistHome";
+import ReceptionistHome from "./components/ReceptionistDashboard";
 import { useSelector } from "react-redux";
 import Logout from "./components/logout";
 import Register from './components/Register'

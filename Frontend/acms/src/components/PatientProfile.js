@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 
-const API_BASE = "http://localhost:8081";
+const API_BASE = "http://localhost:8091";
 
 const PatientProfile = () => {
     const [profile, setProfile] = useState(null);
     const [originalProfile, setOriginalProfile] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [isEditing, setIsEditing] = useState(false); // 🟢 Edit mode state
+    const [isEditing, setIsEditing] = useState(false);
 
-    // ✅ Fetch patient details when component loads
+    //Fetch patient details when component loads
     useEffect(() => {
         const uid = localStorage.getItem("userId");
         if (!uid) {

@@ -33,25 +33,25 @@ const AdminDashboard = () => {
     }, []);
 
     const fetchEmployees = () => {
-        axios.get("http://localhost:8081/api/admin/employees")
+        axios.get("http://localhost:8092/api/admin/employees")
             .then(response => setEmployees(response.data))
             .catch(error => console.error("Error fetching employees:", error));
     };
 
     const fetchAppointments = () => {
-        axios.get("http://localhost:8081/api/admin/appointments")
+        axios.get("http://localhost:8092/api/admin/appointments")
             .then(response => setAppointments(response.data))
             .catch(error => console.error("Error fetching appointments:", error));
     };
 
     const fetchPatients = () => {
-        axios.get("http://localhost:8081/api/admin/patients")
+        axios.get("http://localhost:8092/api/admin/patients")
             .then(response => setPatients(response.data))
             .catch(error => console.error("Error fetching patients:", error));
     };
 
     const addEmployee = () => {
-        axios.post("http://localhost:8081/api/admin/addEmployee", newEmployee)
+        axios.post("http://localhost:8092/api/admin/addEmployee", newEmployee)
             .then(response => {
                 alert(`Employee added!\nUsername: ${response.data.user.uname}\nPassword: ${newEmployee.user.password}`);
                 setShowModal(false);
@@ -61,7 +61,7 @@ const AdminDashboard = () => {
     };
 
     const deleteEmployee = (eid) => {
-        axios.delete(`http://localhost:8081/api/admin/deleteEmployee/${eid}`)
+        axios.delete(`http://localhost:8092/api/admin/deleteEmployee/${eid}`)
             .then(() => {
                 alert("Employee deleted successfully!");
                 fetchEmployees();

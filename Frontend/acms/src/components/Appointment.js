@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const API_BASE = 'http://localhost:8081';
+const API_BASE = 'http://localhost:8091';
 
 const Appointments = () => {
     const [selectedDate, setSelectedDate] = useState('');
@@ -49,11 +49,30 @@ const Appointments = () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ userId, slotId: selectedSlot, appDate: selectedDate, appTime })
         })
-            .then(res => res.json())
+            .then(async (res) => {
+                const responseData = await res.json(); // Parse response
+                if (!res.ok) {
+                    throw new Error(responseData.message || 'Failed to book appointment');
+                }
+                return responseData;
+            })
             .then(() => {
                 setBookingSuccess(true);
+                alert('✅ Appointment booked successfully!');
             })
-            .catch(err => console.error('Error booking appointment:', err));
+            .catch(err => {
+                console.error('Error booking appointment:', err.message);
+
+                // Handle specific error messages
+                if (err.message.includes('already have an appointment')) {
+                    alert('⚠️ You have already booked an appointment for this date. Please choose another day.');
+                } else if (err.message.includes('Slot is already booked')) {
+                    alert('❌ The selected slot is already booked. Please pick another available time.');
+                } else {
+                    alert('❌ Failed to book the appointment. Please try again later.');
+                }
+            });
+
     };
 
     return (

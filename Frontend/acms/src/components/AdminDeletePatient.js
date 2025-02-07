@@ -8,7 +8,7 @@ const AdminDeletePatient = () => {
 
   // Fetch data from backend
   useEffect(() => {
-   axios.get("http://localhost:8081/getAllPatients") // Update with your backend API URL
+   axios.get("http://localhost:8092/getAllPatients") // Update with your backend API URL
       .then((response) => {
         setData(response.data);
       })

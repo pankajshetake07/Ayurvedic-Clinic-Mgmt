@@ -6,7 +6,7 @@ const AdminAppointments = () => {
 
     // Fetch appointment data from the backend API
    useEffect(() => {
-    fetch("http://localhost:8081/appointments/getAllAppointments")
+    fetch("http://localhost:8092/appointments/getAllAppointments")
         .then((response) => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);

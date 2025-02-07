@@ -17,7 +17,7 @@ const AdminProfile = () => {
       return;
     }
 
-    fetch(`http://localhost:8081/employee/${rid}`)
+    fetch(`http://localhost:8092/employee/${rid}`)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch the Admin Data");
         return res.json();
