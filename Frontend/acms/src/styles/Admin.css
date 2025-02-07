@@ -126,15 +126,16 @@ nav a:hover {
 }
 
 .logo {
- height: 50px;
- width: 60px;
- margin-right: 10px;
+ height: 60px;
+ width: 100px;
+ margin-right: 90px;
 }
 
 .admin-name {
  font-size: 18px;
  font-weight: bold;
  margin-right: 20px;
+ /* margin-left: 100px; */
 } 
 
 /* Navigation buttons */
@@ -204,15 +205,43 @@ nav a:hover {
 /* Footer */
 
 .dashboard-footer{
- background-color: #0e8da6;
+ background-color:lightblue;
  height: 100px;
  color: white;
  text-align: center;
  padding: 10px;
- position: fixed; /* Keep it at the bottom */
+ position: fixed; /*Keep it at the bottom*/
  bottom: 0;
  left: 0;
  width: 100vw; /* Full width of the viewport */
  font-size: 14px;
  z-index: 1000; /* Ensure it's above other elements */
 }
+
+
+
+/* Ensure the main content takes full width */
+.main-content {
+ width: 100%;
+ margin: 0;
+ padding: 20px;
+ display: contents;
+ overflow-y: auto; /* Enable scrolling if needed */
+}
+
+/* Ensure header spans the full width */
+.dashboard-header {
+ width: 100%;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ background-color: white;
+ padding: 15px 20px;
+ color: black;
+ box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+ position: fixed;
+ top: 0;
+ left: 0;
+ z-index: 1000;
+}
+

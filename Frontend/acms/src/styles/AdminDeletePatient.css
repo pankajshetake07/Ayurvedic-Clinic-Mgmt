@@ -1,4 +1,4 @@
-/* Table container */
+Table container
 .table-container {
     width: 100%;
     /* Enables horizontal scrolling for small screens */
@@ -7,7 +7,7 @@
     margin-right: auto;
     flex-direction: column;
     align-items: flex-start; /* Align content to the left */
-    padding-left: 20px; /* Adjust spacing from the left */
+    padding-left: 200px; /* Adjust spacing from the left */
 }
 
 /* Table wrapper */

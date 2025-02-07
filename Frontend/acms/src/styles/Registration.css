@@ -7,7 +7,7 @@
 
 .register-container {
     width: 900px;
-    height: 300px;
+    height: 1400px;
     margin: 2rem auto;
     padding: 2rem;
     background: white;
@@ -154,4 +154,7 @@
 
 #add {
     padding-bottom: 3rem;
+}
+.input-icon{
+    position: absolute;
 }
