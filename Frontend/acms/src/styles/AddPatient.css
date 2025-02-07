@@ -1,61 +1,93 @@
-/* AddPatient.css */
 
-body {
- background-color: #f4f7fc;
+/* Styles for the AddPatient Component */
+
+.add-patient-container {
+ max-width: 700px;
+ margin: 50px auto;
+ padding: 20px;
+ border-radius: 12px;
+ box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ background-color: #f9f9f9;
  font-family: Arial, sans-serif;
 }
 
-#add {
+.add-patient-container h2 {
  text-align: center;
- color:black;
- margin-top:20px;
- margin-bottom: 30px;
+ margin-bottom: 20px;
+ color: #333;
 }
 
-#add_p{
- width: 1000px;
- background-color: whitesmoke;
- padding: 20px;
- border-radius: 10px;
- box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
- margin: auto;
-}
-
-.form-label {
+label {
+ display: block;
+ margin-bottom: 5px;
  font-weight: bold;
  color: black;
 }
 
-.form-control {
+input[type="text"],
+input[type="password"],
+input[type="date"],
+input[type="email"] {
  width: 100%;
- padding: 8px;
+ padding: 10px;
  margin-bottom: 15px;
- border: 1px solid #ccc;
- border-radius: 5px;
+ border: 1px solid #ddd;
+ border-radius: 8px;
+ font-size: 16px;
 }
 
-#btn {
- width: 100px;
+.p_gender-options {
+ margin-bottom: 15px;
+}
+
+.p_gender-options label {
+ margin-right: 20px;
+ font-weight: normal;
+}
+
+.button-container {
+ display: flex;
+ justify-content: space-between;
+}
+
+.create-btn,
+.p_clear-btn {
+ width: 48%;
  padding: 10px;
  font-size: 16px;
  border: none;
- border-radius: 5px;
+ border-radius: 8px;
  cursor: pointer;
 }
 
-.btn-primary {
- 
- background-color: #1a237e;
+.create-btn {
+ background-color: #28a745;
  color: white;
 }
 
-.btn-primary:hover {
- background-color: #0d1b5e;
+.create-btn:hover {
+ background-color: #218838;
 }
 
-.btn-primary.mb-3 {
- margin-right: 3%;
- background-color:  #0d1b5e;
- width: auto;
+.p_clear-btn {
+ background-color: #dc3545;
+ color: white;
 }
 
+.p_clear-btn:hover {
+ background-color: #c82333;
+}
+
+.p_login-redirect {
+ text-align: center;
+ margin-top: 20px;
+}
+
+.p_login-redirect a {
+ color: #007bff;
+ text-decoration: none;
+}
+
+.p_login-redirect a:hover {
+ text-decoration: underline;
+}

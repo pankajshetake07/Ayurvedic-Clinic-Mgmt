@@ -7,7 +7,9 @@ import AddPatient from "./AddPatient"
 import View_Appointment from "./View_Appointments"
 import Update_Patient from "./Update_Patient"
 import "../styles/AssistantDoctor.css"; // Import the CSS file
-
+import { useEffect ,useState} from "react";
+import Logout from "./logout";
+import logo from "../images/LogoPrakritiSync.png"; 
 const logout = () => {
   if (window.confirm("Do you want to logout?")) {
     console.log("Logged out");
@@ -16,12 +18,22 @@ const logout = () => {
 };
 
 function AssistantDoctor() {
+
+  const [assDoctorName, setAdminName] = useState("Assistant Doctor");
+  
+    useEffect(() => {
+      const storedAssitantName = localStorage.getItem("userName") || "Admin";
+      setAdminName(storedAssitantName);
+    }, []);
   return (
     <div className="container">
       {/* Navigation Bar */}
       <nav className="top-navbar">
+      <div className="logo-container">
+          <img src={logo} alt="PrakritiSync Logo" className="logo" />
+        </div>
         <div>
-          <p className="doctor-name"><h3><strong>Dr.Pankaj Shetake-Patil</strong></h3><em>(Assistant Doctor)</em></p>
+        <h2 className="assDoctor-name">Welcome {assDoctorName}</h2>
         </div>
         <ul className="nav-links" style={{ listStyle: "none", padding: 10 }}>
 
@@ -51,9 +63,10 @@ function AssistantDoctor() {
             </NavLink>
           </li>
         </ul>
-        <button onClick={logout} className="logout-btn2">
+        {/* <button onClick={logout} className="logout-btn2">
           <FaSignOutAlt /> Logout
-        </button>
+        </button> */}
+        <Logout/>
       </nav>
 
       {/* Main Content */}
@@ -63,7 +76,7 @@ function AssistantDoctor() {
           {/* <h1>Welcome to Assistant Doctor Dashboard</h1>
           <p>Manage patients, appointments, and medical records efficiently.</p> */}
           <Routes>
-            <Route path="/" element={<div><h1>Welcome ! Welcome ! Pankaj Shetake-Patil</h1></div>} />
+            <Route path="/" element={<div style={{marginTop:"100px",textAlign:"center"}}><h1>Welcome ! Welcome ! {assDoctorName}</h1></div>} />
             <Route path="/adashboard" element={<Adashboard />} />
             <Route path="/patientDetails" element={<AddPatient />} />
             <Route path="/appointment" element={<View_Appointment />} />

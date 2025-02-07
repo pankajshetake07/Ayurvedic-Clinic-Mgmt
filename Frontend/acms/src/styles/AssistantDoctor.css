@@ -1,132 +1,56 @@
-/* General Reset */
-* {
- margin: 0;
- padding: 0;
- box-sizing: border-box;
- font-family: "Arial", sans-serif;
-}
-
-/* Full-Width Layout */
-/* .container {
- height: 100vh;
- background-color: white;
- display: flex;
- flex-direction: column;
- width: 100vw;
-} */
-
-/* Full-Width Navigation Bar */
+/* Make the navbar full width */
 .top-navbar {
  width: 100%;
- background-color:lightblue;
- color: black;
+ background-color:rgb(33, 52, 109) ;
+ color: white;
  display: flex;
- align-items: center;
  justify-content: space-between;
- padding: 15px 30px;
- height: 80px;
- box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
- position: fixed; /* Makes it always visible */
- top: 0;
- left: 0;
- z-index: 500;
-}
-
-/* Center Content */
-/* .main-content {
- flex: 1;
- padding: 100px 40px; Increased padding to prevent overlap with navbar
- display: flex;
- justify-content: center;
  align-items: center;
- width: 100vw;
- position-area: inherit;
-} */
-
-/* Sidebar */
-.sidebar {
- width: 250px; /* Fixed width for sidebar */
- min-height: 100vh;
- background: #eef2ff; /* Light blue background */
- padding: 20px;
- position: fixed; /* Keeps sidebar fixed */
- left: 0;
+ padding: 15px 20px;
+ position: fixed;
  top: 0;
- bottom: 0;
+ left: 0;
+ z-index: 1000;
+ box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Main content area */
-.main-content {
- flex-grow: 1;
- margin-left: 500px; /* Same width as the sidebar */
- padding: 20px;
- display: flex;
- align-items: flex-start; /* Aligns content to top-left */
- justify-content: flex-start; /* Aligns content to left */
- width: calc(100vw - 250px); /* Takes the remaining width */
-}
-
-
-/* Full-width Navigation Links */
+/* Ensure navigation links are properly spaced */
 .nav-links {
- list-style: none;
  display: flex;
- gap: 20px;
+ gap: 15px;
 }
 
-.nav-links li {
- display: inline;
-}
-
+/* Make sure the nav links are well-spaced */
 .nav-links a {
- display: flex;
- align-items: center;
+ color: white;
  text-decoration: none;
- color: darkblue;
- font-weight: bold;
+ font-size: 18px;
  padding: 10px 15px;
- font-size: large;
+ font-weight: bold;
  border-radius: 5px;
  transition: background 0.3s ease-in-out;
 }
 
-.nav-links a:hover {
- background-color: lightcyan;
+/* Adjust the container to prevent content from overlapping with navbar */
+.container {
+ margin-top: 70px; /* Adjust based on navbar height */
 }
 
-.nav-links a svg {
- margin-right: 8px;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+ .nav-links {
+   flex-direction: column;
+   align-items: center;
+ }
+
+ .top-navbar {
+   flex-direction: column;
+   padding: 10px;
+ }
 }
 
-/* Logout Button */
-.logout-btn2 {
- display: flex;
- align-items: center;
- background-color: lightblue
- ;
- color:darkblue;
- font-size: large;
+.assDoctor-name{
+ font-size: 18px;
  font-weight: bold;
- padding: 10px 15px;
- border: none;
- border-radius: 5px;
- cursor: pointer;
- transition: background 0.3s ease-in-out;
-}
-
-.logout-btn2:hover {
- background-color: rgb(225, 9, 9);
-}
-
-.main-box h1 {
- font-size: 2rem;
- font-weight: bold;
- color: #333;
- /* height: 50px; */
-}
-
-.main-box p {
- font-size: 1rem;
- /* color: #555; */
- margin-top: 10px;
+ 
 }

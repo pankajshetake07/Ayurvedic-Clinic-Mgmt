@@ -33,9 +33,11 @@
 /* Labels */
 .create-account-container label {
  font-weight: bold;
- color: #555;
+ color: black;
  display: block;
  margin-top: 10px;
+ text-align: left;
+ /* margin-left: 0; */
 }
 
 /* Gender Selection */
@@ -75,4 +77,9 @@
    width: 90%;
    padding: 15px;
  }
+}
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
 }

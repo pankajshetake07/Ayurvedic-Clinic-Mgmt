@@ -1,52 +1,38 @@
-#update {
- display: block;  /* Make it a block element */
- margin: 10px auto;  /* Center horizontally */
- width: 50%; /* Adjust width as needed */
+.put_patient {
+ width: 50%;
+ margin: auto;
  text-align: center;
+ font-family: Arial, sans-serif;
+}
+
+.put_patient input,
+.put_patient select,
+.put_patient textarea {
+ display: block;
+ width: 80%;
+ margin: 10px auto;
+ padding: 8px;
+ border: 1px solid #ccc;
+ border-radius: 4px;
+}
+
+.put_patient button {
+ background-color: #4CAF50;
+ color: white;
  padding: 10px 15px;
  border: none;
  cursor: pointer;
- font-size: 16px;
- font-weight: bold;
- border-radius: 5px;
+ margin-top: 10px;
 }
 
-/* Primary Button Styling */
-.btn-primary {
- background-color: #1a237e;
- color: white;
- padding: 12px 20px;
- border-radius: 5px;
- border: none;
- font-size: 16px;
- cursor: pointer;
- transition: background-color 0.3s ease-in-out;
+.put_patient button:disabled {
+ background-color: #ccc;
 }
 
-/* Hover Effect */
-.btn-primary:hover {
- background-color: #0d1b5e;
-}
-
-/* Additional Margin for Spacing */
-.btn-primary.mb-3 {
- margin-right: 3%;
- background-color: #0d1b5e;
- width: auto;
-}
-#up{
- text-align: center;
- color:black;
-}
-
-#fupdate{
- background-color: rgb(247, 248, 249);
- width: 1000px;
-
- width: 1000px;
- /* background-color:; */
- padding: 20px;
- border-radius: 10px;
- box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
- margin: auto;
+.put_patient_form {
+ margin-top: 20px;
+ padding: 15px;
+ border: 1px solid #ddd;
+ border-radius: 8px;
+ background-color: #f9f9f9;
 }
