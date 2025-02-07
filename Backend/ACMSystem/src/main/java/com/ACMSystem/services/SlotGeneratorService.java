@@ -21,7 +21,7 @@ public class SlotGeneratorService {
     private static final int DAYS_AHEAD = 7; // Generate slots for 7 days ahead
 
     
-    @Scheduled(cron = "0 0 0 ? * SUN") // Runs every Sunday at 12:00 AM
+    @Scheduled(cron = "0 0 0 ? * FRI") // Runs every Sunday at 12:00 AM
     public void generateSlotsForNextWeek() {
         System.out.println("Running weekly slot generation...");
 

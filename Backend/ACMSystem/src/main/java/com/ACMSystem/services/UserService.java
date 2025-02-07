@@ -103,4 +103,11 @@ public class UserService {
         return userRepository.save(existingUser);
     }
 	
+
+	public List<User> getAllPatients() {
+		Role role = roleRepository.findByRname("Patient")
+	            .orElseThrow(() -> new RuntimeException("Role not found with ID: "));
+		List<User> user = userRepository.findByRole(role);
+		return user;
+    }
 }

@@ -24,49 +24,53 @@ import com.ACMSystem.services.UserService;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class UserController {
-	
+
 	@Autowired
 	UserService userService;
 	@Autowired
 	RoleService roleService;
-	
+
 	@GetMapping("/getAllUsers")
-	public List<User> getAllUsers(){
+	public List<User> getAllUsers() {
 		return userService.getAllUsers();
 	}
-	
+
 	@GetMapping("/getAllRoles")
-	public List<Role> getAllRoles(){
+	public List<Role> getAllRoles() {
 		return roleService.getAllRoles();
 	}
-	
+
 	@PostMapping("/register")
 	public Patient insertUserRecord(@RequestBody UserDTO userDto) {
-	    return userService.insertUserRecord(userDto);
+		return userService.insertUserRecord(userDto);
 	}
-	
+
 	@PostMapping("/login")
 	public User loginUser(@RequestBody LoginDto credentials) {
-	    User user = userService.loginUser(credentials.getUname(), credentials.getPassword());
-	    return user;
+		User user = userService.loginUser(credentials.getUname(), credentials.getPassword());
+		return user;
 	}
-	
+
 	@GetMapping("/getUserRole/{username}")
 	public String getUserRole(@PathVariable String username) {
 		return userService.getUserRole(username);
 	}
-	
+
 	@DeleteMapping("/delete/patient/{fname}")
 	public ResponseEntity<String> deletePatient(@PathVariable String fname) {
-	    User deletedUser = userService.deletePatientByFname(fname);
-	    return ResponseEntity.ok("User with first name '" + deletedUser.getFname() + "' has been deleted successfully.");
+		User deletedUser = userService.deletePatientByFname(fname);
+		return ResponseEntity
+				.ok("User with first name '" + deletedUser.getFname() + "' has been deleted successfully.");
 	}
-	
+
 	@PutMapping("/user/update/{id}")
 	public User updateUser(@PathVariable int id, @RequestBody UserDTO userDTO) {
-        return userService.updateUser(id, userDTO);
-    }
-	
-	
+		return userService.updateUser(id, userDTO);
+	}
+
+	@GetMapping("/getAllPatients")
+	public List<User> getAllPatients() {
+		return userService.getAllPatients();
+	}
 
 }

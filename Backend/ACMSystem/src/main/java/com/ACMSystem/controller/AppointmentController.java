@@ -1,7 +1,16 @@
 package com.ACMSystem.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.ACMSystem.dto.AppointmentRequest;
 import com.ACMSystem.entities.Appointment;
@@ -42,5 +51,23 @@ public class AppointmentController {
         
         return appointmentService.bookAppointment(userId, slotId, appDate, appTime);
     }
+    
+    @GetMapping("/booked")
+    public List<Appointment> getAllBookedAppointments() {
+        return appointmentService.getAllBookedAppointments();
+    }
+    
+    @PutMapping("/cancel/{id}")  
+    public ResponseEntity<String> cancelAppointment(@PathVariable("id") Integer appointmentId) {
+        try {
+            boolean isCancelled = appointmentService.cancelAppointment(appointmentId);
+            return isCancelled 
+                ? ResponseEntity.ok("Appointment cancelled successfully.") 
+                : ResponseEntity.notFound().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("An error occurred while cancelling the appointment.");
+        }
+    }
+
 
 }

@@ -31,10 +31,10 @@ public class PatientController {
 	UserService userService;
 	
 	//controller for fetching all the patients 
-	@GetMapping("/getAllPatients")
-	public List<Patient> getAllPatients(){
-		return patientService.getAllPatient();
-	}
+//	@GetMapping("/getAllPatients")
+//	public List<Patient> getAllPatients(){
+//		return patientService.getAllPatient();
+//	}
 	
 	//controller for adding new patient record
 	@PostMapping("/register-patient")
