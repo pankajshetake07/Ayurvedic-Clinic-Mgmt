@@ -20,10 +20,13 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
  // Check if an appointment already exists for a given patient and time
     boolean existsByPatientAndAppDateAndAppTime(Patient patient, LocalDate appDate, LocalTime appTime);
     boolean existsByPatient(Patient patient);
+    
     List<Appointment> findByStatus(AppointmentStatus status);
+    
 	boolean existsByPatientAndAppDate(Patient patient, LocalDate appDate);
 	
-	@Query("select a from Appointment a where a.appDate >= CURRENT_DATE")
+	// Appointment Repository for view Appointments
+    @Query("select a from Appointment a where a.appDate >= CURRENT_DATE and a.status != 'CANCELED'")
 	public List<Appointment> findAllWithDateGreaterthanorEqualTo();
 	
 	
