@@ -5,25 +5,8 @@ const AdminAppointments = () => {
     const [appointments, setAppointments] = useState([]);
 
     // Fetch appointment data from the backend API
-<<<<<<< HEAD
-   useEffect(() => {
-    fetch("http://localhost:8092/appointments/getAllAppointments")
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            return response.json();
-        })
-        .then((data) => {
-            console.log("Fetched appointment data:", JSON.stringify(data, null, 2)); // Debugging log
-            setAppointments(data);
-        })
-        .catch((error) => console.error("Error fetching appointment data:", error));
-}, []);
-
-=======
     useEffect(() => {
-        fetch("http://localhost:8081/appointments/getAllAppointments")
+        fetch("http://localhost:8092/appointments/getAllAppointments")
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -36,7 +19,7 @@ const AdminAppointments = () => {
             })
             .catch((error) => console.error("Error fetching appointment data:", error));
     }, []);
->>>>>>> 56bf3848feb72d5b990d8fb9c727120a8ff8b1f5
+
 
     return (
         <div className="admin-appointments-container">

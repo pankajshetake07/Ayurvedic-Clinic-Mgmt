@@ -1,193 +1,222 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { FaUser, FaCalendar, FaTimes, FaFilePrescription } from "react-icons/fa";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Logo from '../images/LogoPrakritiSync.png'
+import Logout from "./logout";
 
 const DoctorDashboard = () => {
-  const [medicines, setMedicines] = useState([]);
-  const [appointments, setAppointments] = useState([]);
-  const [doctorProfile, setDoctorProfile] = useState(null);
-  const [selectedAppointment, setSelectedAppointment] = useState("");
-  const [formData, setFormData] = useState({
-    diagnosis: "",
-    treatmentPlan: "",
-    dietDetails: "",
-    foodRecommendations: "",
-    routineRecommendations: "",
-    medicines: [{ medicineId: "", dosage: "", duration: "" }],
-  });
-  const [activeSection, setActiveSection] = useState("appointments");
+  const [activeTab, setActiveTab] = useState("appointments");
+  const [doctorName, setDoctorName] = useState("Doctor");
 
   useEffect(() => {
-    axios.get("https://localhost:7262/api/GetMedicine/GetAllMedicines")
-      .then(response => setMedicines(response.data))
-      .catch(error => console.error("Error fetching medicines:", error));
-
-    axios.get("http://localhost:8091/appointments/booked")
-      .then(response => setAppointments(response.data))
-      .catch(error => console.error("Error fetching appointments:", error));
-
-    axios.get("/api/doctor/profile")
-      .then(response => setDoctorProfile(response.data))
-      .catch(error => console.error("Error fetching profile:", error));
+    const storedDoctorName = localStorage.getItem("userName") || "Doctor";
+    setDoctorName(storedDoctorName);
   }, []);
 
-  // Handle input changes
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  // Handle medicine selection
-  const handleMedicineChange = (index, field, value) => {
-    const updatedMedicines = [...formData.medicines];
-    updatedMedicines[index][field] = value;
-    setFormData({ ...formData, medicines: updatedMedicines });
-  };
-
-  // Add another medicine field
-  const addMedicine = () => {
-    setFormData({
-      ...formData,
-      medicines: [...formData.medicines, { medicineId: "", dosage: "", duration: "" }],
-    });
-  };
-
-  // Remove a medicine field
-  const removeMedicine = (index) => {
-    const updatedMedicines = formData.medicines.filter((_, i) => i !== index);
-    setFormData({ ...formData, medicines: updatedMedicines });
-  };
-
-  // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!selectedAppointment) {
-      alert("Please select an appointment.");
-      return;
-    }
-
-    try {
-      const requestData = {
-        appointmentId: selectedAppointment,
-        ...formData,
-      };
-
-      await axios.post("/api/consult", requestData);
-      alert("Consultation & Prescription Saved Successfully!");
-    } catch (error) {
-      console.error("Error saving data:", error);
-      alert("Error submitting form");
-    }
-  };
-
   return (
-    <div className="container">
-      {/* Sidebar */}
-      <div className="list-group me-4" style={{ width: "250px" }}>
-        <button className="list-group-item list-group-item-action" onClick={() => setActiveSection("appointments")}>
-          View All Booked Appointments
-        </button>
-        <button className="list-group-item list-group-item-action" onClick={() => setActiveSection("consult")}>
-          Consult Patient
-        </button>
-        <button className="list-group-item list-group-item-action" onClick={() => setActiveSection("profile")}>
-          Doctor Profile
-        </button>
-      </div>
+    <div className="container-fluid vh-100">
+      <div className="row h-100">
+        {/* Sidebar */}
+        <div
+          className="col-md-3 col-lg-2 d-flex flex-column align-items-center p-4 shadow"
+          style={{
+            background: "linear-gradient(135deg, #2c3e50, #34495e)",
+            minHeight: "100vh",
+            overflowY: "auto",
+          }}
+        >
+          {/* Logo */}
+          <img src={Logo} alt="PrakritiSync Logo" height={150} width={200} />
 
-      {/* Main Content */}
-      <div className="flex-grow-1">
-        {activeSection === "appointments" && (
-          <div className="card mb-4">
-            <div className="card-header">Booked Appointments</div>
-            <div className="card-body">
-              <ul className="list-group">
-                {appointments.map((appointment) => (
-                  <li key={appointment.pid} className="list-group-item">
-                    {appointment.pid} - {appointment.patientName}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        )}
+          <h3 className="text-center text-white mb-5 fw-bold">
+            Welcome {doctorName}
+          </h3>
 
-        {activeSection === "consult" && (
-          <div className="card mb-4">
-            <div className="card-header">Consult Patient</div>
-            <div className="card-body">
-              <form onSubmit={handleSubmit}>
-                {/* Select Appointment */}
-                <div className="mb-3">
-                  <label className="form-label">Select Appointment</label>
-                  <select className="form-select" onChange={(e) => setSelectedAppointment(e.target.value)} required>
-                    <option value="">Select Appointment</option>
-                    {appointments.map((a) => (
-                      <option key={a.aid} value={a.aid}>
-                        {a.app_date} - {a.app_time} (Patient ID: {a.pid})
-                      </option>
-                    ))}
-                  </select>
-                </div>
+          <ul className="nav flex-column w-100">
+            {menuItems.map((item) => (
+              <li key={item.id} className="nav-item mb-4">
+                <button
+                  onClick={() => setActiveTab(item.id)}
+                  className={`nav-link text-white d-flex align-items-center gap-3 p-3 w-100 rounded shadow 
+                    ${activeTab === item.id ? "active-menu bg-dark" : ""}`}
+                  style={{
+                    fontSize: "1.2rem",
+                    transition: "background 0.3s ease",
+                  }}
+                >
+                  {item.icon} {item.label}
+                </button>
+              </li>
+            ))}
+          </ul>
+          <Logout />
+        </div>
 
-                {/* Diagnosis */}
-                <div className="mb-3">
-                  <textarea className="form-control" name="diagnosis" placeholder="Diagnosis" onChange={handleChange} required />
-                </div>
-
-                {/* Treatment Plan */}
-                <div className="mb-3">
-                  <textarea className="form-control" name="treatmentPlan" placeholder="Treatment Plan" onChange={handleChange} required />
-                </div>
-
-                {/* Diet Plan */}
-                <div className="mb-3">
-                  <textarea className="form-control" name="dietDetails" placeholder="Diet Details" onChange={handleChange} />
-                </div>
-                <div className="mb-3">
-                  <textarea className="form-control" name="foodRecommendations" placeholder="Food Recommendations" onChange={handleChange} />
-                </div>
-                <div className="mb-3">
-                  <textarea className="form-control" name="routineRecommendations" placeholder="Routine Recommendations" onChange={handleChange} />
-                </div>
-
-                {/* Medicines Section */}
-                <h5>Prescribed Medicines</h5>
-                {formData.medicines.map((med, index) => (
-                  <div key={index} className="mb-3 d-flex gap-2">
-                    <select className="form-select" value={med.medicineId} onChange={(e) => handleMedicineChange(index, "medicineId", e.target.value)} required>
-                      <option value="">Select Medicine</option>
-                      {medicines.map((m) => (
-                        <option key={m.medicineId} value={m.medicineId}>
-                          {m.name}
-                        </option>
-                      ))}
-                    </select>
-                    <input type="text" className="form-control" placeholder="Dosage (e.g., 1 tablet twice a day)" value={med.dosage} onChange={(e) => handleMedicineChange(index, "dosage", e.target.value)} required />
-                    <input type="text" className="form-control" placeholder="Duration (e.g., 7 days)" value={med.duration} onChange={(e) => handleMedicineChange(index, "duration", e.target.value)} required />
-                    <button type="button" className="btn btn-danger" onClick={() => removeMedicine(index)}>X</button>
-                  </div>
-                ))}
-                <button type="button" className="btn btn-secondary mb-3" onClick={addMedicine}>+ Add Medicine</button>
-
-                {/* Submit Button */}
-                <button type="submit" className="btn btn-primary">Save Consultation</button>
-              </form>
-            </div>
-          </div>
-        )}
-
-        {activeSection === "profile" && doctorProfile && (
-          <div className="card">
-            <div className="card-header">Doctor Profile</div>
-            <div className="card-body">
-              <p><strong>Full Name:</strong> {doctorProfile.fname} {doctorProfile.lname}</p>
-              <p><strong>Email:</strong> {doctorProfile.email}</p>
-            </div>
-          </div>
-        )}
+        {/* Main Content */}
+        <div className="col-md-9 col-lg-10 p-4 bg-light">
+          <h1 className="fw-bold text-primary">Doctor Dashboard</h1>
+          <div className="bg-white p-4 rounded shadow">{getTabContent(activeTab)}</div>
+        </div>
       </div>
     </div>
   );
 };
+
+// Render Active Tab Content
+const getTabContent = (activeTab) => {
+  switch (activeTab) {
+    case "Appointments":
+      return <Appointments />;
+    case "Patients":
+      return <Patients />;
+    case "Prescriptions":
+      return <Prescriptions />;
+    default:
+      return null;
+  }
+};
+
+// Patients Component
+const Patients = () => {
+  const [patients, setPatients] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8091/getAllPatients")
+      .then((response) => response.json())
+      .then((data) => setPatients(data))
+      .catch((error) => console.error("Error fetching patients:", error));
+  }, []);
+
+  return (
+    <div>
+      <h2 className="text-success">Patient List</h2>
+      {patients.length === 0 ? (
+        <p>No patients found.</p>
+      ) : (
+        <table className="table table-hover table-bordered">
+          <thead className="table-dark">
+            <tr>
+              <th>Username</th>
+              <th>Full Name</th>
+              <th>DOB</th>
+              <th>Address</th>
+
+              <th>Gender</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            {patients.map((user) => (
+              <tr key={user.uid} style={{ backgroundColor: "#d4edda" }}>
+                <td>{user.uname}</td>
+                <td>{user.fname} {user.lname}</td>
+                <td>{user.dob}</td>
+                <td>{user.address}</td>
+
+                <td>{user.gender}</td>
+                <td>{user.email}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
+  );
+};
+
+// Appointments Component
+const Appointments = () => {
+  const [appointments, setAppointments] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8091/appointments")
+      .then((response) => response.json())
+      .then((data) => setAppointments(data))
+      .catch((error) => console.error("Error fetching appointments:", error));
+  }, []);
+
+  return (
+    <div>
+      <h2 className="text-success">Appointments</h2>
+      {appointments.length === 0 ? (
+        <p>No appointments available.</p>
+      ) : (
+        <table className="table table-hover table-bordered">
+          <thead className="table-dark">
+            <tr>
+              <th>Appointment Date</th>
+              <th>Appointment Time</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            {appointments.map((appointment, index) => (
+              <tr key={index} style={{ backgroundColor: "#d4edda" }}>
+                <td>{appointment.appDate}</td>
+                <td>{appointment.appTime}</td>
+                <td>{appointment.fname}</td>
+                <td>{appointment.lname}</td>
+                <td>{appointment.email}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
+  );
+};
+
+// Prescriptions Component
+const Prescriptions = () => {
+  const [prescriptions, setPrescriptions] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8081/getAllPrescriptions")
+      .then((response) => response.json())
+      .then((data) => setPrescriptions(data))
+      .catch((error) => console.error("Error fetching prescriptions:", error));
+  }, []);
+
+  return (
+    <div>
+      <h2 className="text-success">Prescriptions</h2>
+      {prescriptions.length === 0 ? (
+        <p>No prescriptions found.</p>
+      ) : (
+        <table className="table table-hover table-bordered">
+          <thead className="table-dark">
+            <tr>
+              <th>Prescription ID</th>
+              <th>Patient Name</th>
+              <th>Medicine</th>
+              <th>Dosage</th>
+              <th>Instructions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {prescriptions.map((prescription) => (
+              <tr key={prescription.id} style={{ backgroundColor: "#d4edda" }}>
+                <td>{prescription.id}</td>
+                <td>{prescription.patientName}</td>
+                <td>{prescription.medicine}</td>
+                <td>{prescription.dosage}</td>
+                <td>{prescription.instructions}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
+  );
+};
+
+// Sidebar Menu Items
+const menuItems = [
+  { id: "Appointments", label: "Appointments", icon: <FaUser /> },
+  { id: "Patients", label: "Patients", icon: <FaCalendar /> },
+  { id: "Prescriptions", label: "Prescriptions", icon: <FaFilePrescription /> },
+];
 
 export default DoctorDashboard;
