@@ -1,1 +1,1 @@
-# Ayurvedic-Clinic-Mgmt
+# Ayurvedic-Clinic-Management
