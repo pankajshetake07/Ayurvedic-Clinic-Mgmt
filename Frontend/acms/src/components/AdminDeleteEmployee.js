@@ -19,20 +19,20 @@ const UserEmployeeTable = () => {
 
   // Delete record
   const handleDelete = (id) => {
-   if (window.confirm("Are you sure you want to delete this record?")) {
-     axios
-       .delete(`http://localhost:8081/employee/delete/${id}`)
-       .then(() => {
-         setData(data.filter((item) => item.eid !== id));
-         alert("Record deleted successfully!");
-       })
-       .catch((error) => {
-         console.error("Error deleting record:", error);
-         alert("Failed to delete record. Please try again.");
-       });
-   }
- };
- 
+    if (window.confirm("Are you sure you want to delete this record?")) {
+      axios
+        .delete(`http://localhost:8092/employee/delete/${id}`)
+        .then(() => {
+          setData(data.filter((item) => item.eid !== id));
+          alert("Record deleted successfully!");
+        })
+        .catch((error) => {
+          console.error("Error deleting record:", error);
+          alert("Failed to delete record. Please try again.");
+        });
+    }
+  };
+
 
   return (
     <div className="table-container">
@@ -47,9 +47,9 @@ const UserEmployeeTable = () => {
               <th>Last Name</th>
               <th>DOB</th>
               <th>Address</th>
-              <th>Role ID</th>
+              <th>Role Name</th>
               <th>Gender</th>
-              <th>Status</th>
+              {/* <th>Status</th> */}
               <th>Email</th>
               <th>Reg. No</th>
               <th>DOJ</th>
@@ -68,7 +68,7 @@ const UserEmployeeTable = () => {
                 <td>{item.user.address}</td>
                 <td>{item.user.role.rname}</td>
                 <td>{item.user.gender}</td>
-                <td>{item.user.status ==0 ? 'Inactive' : 'Active'}</td>
+                {/* <td>{item.user.status == 0 ? 'Inactive' : 'Active'}</td> */}
                 <td>{item.user.email}</td>
                 <td>{item.regno}</td>
                 <td>{item.doj}</td>

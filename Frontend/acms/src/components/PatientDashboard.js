@@ -236,26 +236,22 @@ const PatientDashboard = () => {
                 <nav className="sidebar-nav">
                     <a
                         className={activeTab === 'appointments' ? 'active' : ''}
-                        onClick={() => setActiveTab('appointments')}
-                    >
+                        onClick={() => setActiveTab('appointments')}>
                         <i className="fas fa-calendar-check"></i> Appointments
                     </a>
                     <a
                         className={activeTab === 'profile' ? 'active' : ''}
-                        onClick={() => setActiveTab('profile')}
-                    >
+                        onClick={() => setActiveTab('profile')}>
                         <i className="fas fa-user"></i> Profile
                     </a>
                     <a
                         className={activeTab === 'treatments' ? 'active' : ''}
-                        onClick={() => setActiveTab('treatments')}
-                    >
+                        onClick={() => setActiveTab('treatments')}>
                         <i className="fas fa-pills"></i> Treatments
                     </a>
                     <a
                         className={activeTab === 'feedback' ? 'active' : ''}
-                        onClick={() => setActiveTab('feedback')}
-                    >
+                        onClick={() => setActiveTab('feedback')}>
                         <i className="fas fa-comment-dots"></i> Feedback
                     </a>
                 </nav>

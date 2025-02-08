@@ -6,7 +6,7 @@ const AdminAppointments = () => {
 
     // Fetch appointment data from the backend API
     useEffect(() => {
-        fetch("http://localhost:8092/appointments/getAllAppointments")
+        fetch("http://localhost:8091/appointments")
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
@@ -22,31 +22,34 @@ const AdminAppointments = () => {
 
 
     return (
-        <div className="admin-appointments-container">
-            <h2 className="admin-appointments-title">Appointments</h2>
-            <div className="appointments-table-wrapper">
-                <table className="appointments-table">
-                    <thead>
+        <div>
+            <h2 className="text-success">Appointments</h2>
+            {appointments.length === 0 ? (
+                <p>No appointments available.</p>
+            ) : (
+                <table className="table table-hover table-bordered">
+                    <thead className="table-dark">
                         <tr>
-                            <th>Patient Name</th>
                             <th>Appointment Date</th>
                             <th>Appointment Time</th>
-                            <th>Status</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {appointments.map((appointment) => (
-                            <tr key={appointment.aid}>
-                                <td>{appointment.patient.fname}
-                                </td>
+                        {appointments.map((appointment, index) => (
+                            <tr key={index} style={{ backgroundColor: "#d4edda" }}>
                                 <td>{appointment.appDate}</td>
                                 <td>{appointment.appTime}</td>
-                                <td>{appointment.status}</td>
+                                <td>{appointment.fname}</td>
+                                <td>{appointment.lname}</td>
+                                <td>{appointment.email}</td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
-            </div>
+            )}
         </div>
     );
 };

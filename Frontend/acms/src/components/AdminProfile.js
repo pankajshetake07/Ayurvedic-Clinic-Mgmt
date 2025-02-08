@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useId } from "react";
 import "../styles/AdminProfile.css";
 
 const AdminProfile = () => {
@@ -10,22 +10,29 @@ const AdminProfile = () => {
 
   useEffect(() => {
     const rid = localStorage.getItem("roleId");
-    console.log("Role Id "+rid);
-    if (!rid) {
+    const userID = localStorage.getItem("userId");
+
+    if (!rid || !userID) {
       setError("User not logged in.");
       setLoading(false);
       return;
     }
 
-    fetch(`http://localhost:8092/employee/${rid}`)
+    fetch(`http://localhost:8092/employee/${userID}`)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch the Admin Data");
         return res.json();
       })
       .then((data) => {
-        console.log("Fetched Admin Data", data);  // Check the structure of the response here
+        console.log("Fetched Admin Data", data);
         setProfile(data);
         setOriginalProfile(data);
+
+        //Store eid in session storage
+        // /ssionStorage.setItem("uid", data.user.uid);
+        // console.log(sessionStorage.getItem("uid"));
+        // console.log("EID stored in session:", sessionStorage.getItem("eid"));
+
         setLoading(false);
       })
       .catch((err) => {
@@ -46,25 +53,27 @@ const AdminProfile = () => {
     }));
   };
 
+
   const handleProfileUpdate = (e) => {
     e.preventDefault();
     const rid = localStorage.getItem("roleId");
+    const eid = sessionStorage.getItem("eid");
     // console.log("Role Id :"+rid);
     if (!rid) return;
 
     const updatedFields = {};
-        Object.keys(profile).forEach((key) => {
-            if (profile[key] !== originalProfile[key]) {
-                updatedFields[key] = profile[key];
-            }
-        });
+    Object.keys(profile).forEach((key) => {
+      if (profile[key] !== originalProfile[key]) {
+        updatedFields[key] = profile[key];
+      }
+    });
 
     if (Object.keys(updatedFields).length === 0) {
       alert("⚠ No changes detected.");
       return;
     }
-
-    fetch(`http://localhost:8081/update/admin/${rid}`, {
+    const userID = localStorage.getItem("userId");
+    fetch(`http://localhost:8092/update/employee/${userID}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedFields),
@@ -90,7 +99,7 @@ const AdminProfile = () => {
           <input
             type="text"
             name="uname"
-            value={profile?.uname || ""}
+            value={profile?.user.uname || ""}
             onChange={handleChange}
             disabled={!isEditing}
           />
@@ -99,7 +108,7 @@ const AdminProfile = () => {
           <input
             type="password"
             name="password"
-            value={profile?.password || ""}
+            value={profile?.user.password || ""}
             onChange={handleChange}
             disabled={!isEditing}
           />
@@ -108,7 +117,7 @@ const AdminProfile = () => {
           <input
             type="text"
             name="fname"
-            value={profile?.fname || ""}
+            value={profile?.user.fname || ""}
             onChange={handleChange}
             disabled={!isEditing}
           />
@@ -117,7 +126,7 @@ const AdminProfile = () => {
           <input
             type="text"
             name="lname"
-            value={profile?.lname || ""}
+            value={profile?.user.lname || ""}
             onChange={handleChange}
             disabled={!isEditing}
           />
@@ -126,7 +135,7 @@ const AdminProfile = () => {
           <input
             type="date"
             name="dob"
-            value={profile?.dob || ""}
+            value={profile?.user.dob || ""}
             disabled
           />
 
@@ -134,7 +143,7 @@ const AdminProfile = () => {
           <input
             type="text"
             name="address"
-            value={profile?.address || ""}
+            value={profile?.user.address || ""}
             onChange={handleChange}
             disabled={!isEditing}
           />
@@ -143,7 +152,7 @@ const AdminProfile = () => {
           <input
             type="email"
             name="email"
-            value={profile?.email || ""}
+            value={profile?.user.email || ""}
             onChange={handleChange}
             disabled={!isEditing}
           />
@@ -152,7 +161,7 @@ const AdminProfile = () => {
           <input
             type="text"
             name="qualification"
-            value={profile?.employee.qualification || ""}
+            value={profile?.qualification || ""}
             onChange={handleChange}
             disabled={!isEditing}
           />

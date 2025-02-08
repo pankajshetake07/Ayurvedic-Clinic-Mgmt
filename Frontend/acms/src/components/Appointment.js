@@ -58,7 +58,7 @@ const Appointments = () => {
             })
             .then(() => {
                 setBookingSuccess(true);
-                alert('✅ Appointment booked successfully!');
+                alert('Appointment booked successfully!');
             })
             .catch(err => {
                 console.error('Error booking appointment:', err.message);

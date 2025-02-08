@@ -313,10 +313,12 @@ export default function Login() {
         if (Object.keys(obj).length === 0) {
           setMsg("Wrong username and password");
         } else {
+
           localStorage.setItem("userName", `${obj.fname} ${obj.lname}`); // Store name
           localStorage.setItem("userId", `${obj.uid}`)
           alert(localStorage.getItem("userId"))
           localStorage.setItem("roleId", obj.role.rid); // Store role
+
           reduxDispatch(login());
           if (obj.role.rid === 3) {
             navigate("/admin_home");

@@ -32,7 +32,7 @@
 //     <div className="flex h-screen">
 //       {/* Sidebar */}
 //       <div className={`sidebar ${isOpen ? "w-64" : "w-20"} transition-all`}>
-        
+
 //         {/* Admin Profile Section */}
 //         <div className="profile">
 //           {/* Add Logo Above the Admin Name */}
@@ -94,7 +94,7 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
-  FaUserPlus, FaComments, FaSignOutAlt, FaCalendarCheck, FaPills, 
+  FaUserPlus, FaComments, FaSignOutAlt, FaCalendarCheck, FaPills,
   FaTrash, FaUserCircle
 } from "react-icons/fa";
 import { Routes, Route } from "react-router-dom";
@@ -109,7 +109,7 @@ import AdminAddMedicine from "../components/AdminAddMedicine";
 import "../styles/Admin.css";
 
 // Import Logo
-import Logo from "../images/LogoPrakritiSync.png"; 
+import Logo from "../images/LogoPrakritiSync.png";
 
 function AdminDashboard() {
   const navigate = useNavigate();
@@ -122,19 +122,19 @@ function AdminDashboard() {
 
   return (
     <div className="dashboard-container">
-      
+
       {/* Header with Logo, Admin Name & NavLinks */}
       <header className="dashboard-header">
         <div className="logo-container">
-          <img src={Logo} alt="PrakritiSync Logo" className="logo"/>
-          
+          <img src={Logo} alt="PrakritiSync Logo" className="logo" />
 
-  <div className="admin-info">
-  <h2 className="admin-name">Welcome {adminName}</h2>
-  <span className="admin-role">(System Administrator)</span>
-</div>
+
+          <div className="admin-info">
+            <h2 className="admin-name">Welcome {adminName}</h2>
+            <span className="admin-role">(System Administrator)</span>
+          </div>
         </div>
-        
+
         {/* Navigation Bar */}
         <nav className="nav-buttons">
           <NavLink to="/admin_home/createaccount" className="nav-button">
@@ -168,7 +168,7 @@ function AdminDashboard() {
       <main className="main-content">
         <div className="content-box">
           <Routes>
-            <Route path="/createaccount" element={<CreateAccount />} /> 
+            <Route path="/createaccount" element={<CreateAccount />} />
             {/* <Route path="/deletepatient" element={<AdminDeletePatient />} />  */}
             <Route path="/viewfeedback" element={<AdminViewFeedback />} />
             <Route path="/viewappointments" element={<AdminViewAppointments />} />
@@ -177,7 +177,7 @@ function AdminDashboard() {
             <Route path="/profile" element={<AdminProfile />} />
           </Routes>
         </div>
-       
+
       </main>
       {/* <footer className="dashboard-footer">
         <p>@2025 Admin Panel</p>
