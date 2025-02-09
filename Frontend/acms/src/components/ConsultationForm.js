@@ -10,24 +10,32 @@ const ConsultationForm = () => {
         appointmentId: "",
         diagnosis: "",
         treatmentPlan: "",
-        prescriptionDate: new Date().toISOString().split("T")[0],
-        notes: "",
+        prescriptionDate: new Date().toISOString().split("T")[0], // Default to today's date
+        dietDetails: "",
+        foodRecommendations: "",
+        routineRecommendations: "",
         medicines: [{ medicineId: "", dosage: "", duration: "" }],
     });
 
+    // Fetch patients
     useEffect(() => {
-        // Fetch patients, appointments, and medicines using fetch API
-        fetch("https://localhost:7262/api/patient/ids")
+        fetch("http://localhost:8094/api/patient/ids")
             .then((response) => response.json())
             .then((data) => setPatients(data))
             .catch((error) => console.error("Error fetching patients:", error));
-        console.log("Patients: ", patients);
-        fetch("/api/appointments")
+    }, []);
+
+    // Fetch appointments
+    useEffect(() => {
+        fetch("http://localhost:8092/appointments")
             .then((response) => response.json())
             .then((data) => setAppointments(data))
             .catch((error) => console.error("Error fetching appointments:", error));
+    }, []);
 
-        fetch("https://localhost:7262/api/medicines")
+    // Fetch medicines
+    useEffect(() => {
+        fetch("http://localhost:8094/api/medicines")
             .then((response) => response.json())
             .then((data) => setMedicines(data))
             .catch((error) => console.error("Error fetching medicines:", error));
@@ -62,20 +70,40 @@ const ConsultationForm = () => {
     // Handle form submission
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Prepare the data to be sent to the API
+        const consultationData = {
+            patientId: parseInt(formData.patientId, 10),
+            appointmentId: parseInt(formData.appointmentId, 10),
+            diagnosis: formData.diagnosis,
+            treatmentPlan: formData.treatmentPlan,
+            prescriptionDate: formData.prescriptionDate,
+            dietDetails: formData.dietDetails,
+            foodRecommendations: formData.foodRecommendations,
+            routineRecommendations: formData.routineRecommendations,
+            medicines: formData.medicines.map((med) => ({
+                medicineId: parseInt(med.medicineId, 10),
+                dosage: med.dosage,
+                duration: med.duration,
+            })),
+        };
+
         try {
-            const response = await fetch("/api/consult", {
+            const response = await fetch("http://localhost:8094/api/Consult/prescribe", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify(consultationData),
             });
 
             if (!response.ok) {
                 throw new Error("Failed to save consultation");
             }
 
+            const result = await response.json();
             alert("Consultation & Prescription Saved Successfully!");
+            console.log("API Response:", result);
         } catch (error) {
             console.error("Error saving data:", error);
             alert("Error submitting form");
@@ -97,9 +125,9 @@ const ConsultationForm = () => {
                         required
                     >
                         <option value="">Select Patient</option>
-                        {patients.map((p) => (
-                            <option key={p.patientId} value={p.patientId}>
-                                {p.name} (ID: {p.patientId})
+                        {patients.map((patientId, index) => (
+                            <option key={index} value={patientId}>
+                                {patientId}
                             </option>
                         ))}
                     </select>
@@ -116,9 +144,9 @@ const ConsultationForm = () => {
                         required
                     >
                         <option value="">Select Appointment</option>
-                        {appointments.map((a) => (
-                            <option key={a.aid} value={a.aid}>
-                                {a.app_date} - {a.app_time}
+                        {appointments.map((appointment) => (
+                            <option key={appointment.aid} value={appointment.aid}>
+                                {appointment.appId}
                             </option>
                         ))}
                     </select>
@@ -150,15 +178,42 @@ const ConsultationForm = () => {
                     ></textarea>
                 </div>
 
-                {/* Prescription Notes */}
+                {/* Diet Details */}
                 <div className="mb-3">
-                    <label className="form-label">Prescription Notes:</label>
+                    <label className="form-label">Diet Details:</label>
                     <textarea
-                        name="notes"
-                        value={formData.notes}
+                        name="dietDetails"
+                        value={formData.dietDetails}
                         onChange={handleChange}
                         className="form-control"
-                        rows="4"
+                        rows="3"
+                        required
+                    ></textarea>
+                </div>
+
+                {/* Food Recommendations */}
+                <div className="mb-3">
+                    <label className="form-label">Food Recommendations:</label>
+                    <textarea
+                        name="foodRecommendations"
+                        value={formData.foodRecommendations}
+                        onChange={handleChange}
+                        className="form-control"
+                        rows="3"
+                        required
+                    ></textarea>
+                </div>
+
+                {/* Routine Recommendations */}
+                <div className="mb-3">
+                    <label className="form-label">Routine Recommendations:</label>
+                    <textarea
+                        name="routineRecommendations"
+                        value={formData.routineRecommendations}
+                        onChange={handleChange}
+                        className="form-control"
+                        rows="3"
+                        required
                     ></textarea>
                 </div>
 
@@ -175,9 +230,9 @@ const ConsultationForm = () => {
                                     required
                                 >
                                     <option value="">Select Medicine</option>
-                                    {medicines.map((m) => (
-                                        <option key={m.medicineId} value={m.medicineId}>
-                                            {m.name}
+                                    {medicines.map((medicine) => (
+                                        <option key={medicine.medicineId} value={medicine.medicineId}>
+                                            {medicine.name}
                                         </option>
                                     ))}
                                 </select>

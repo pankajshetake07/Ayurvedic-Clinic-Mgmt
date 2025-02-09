@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const API_BASE = "http://localhost:8091";
+const API_BASE = "http://localhost:8092";
 
 const PatientProfile = () => {
     const [profile, setProfile] = useState(null);
@@ -91,10 +91,10 @@ const PatientProfile = () => {
                 </div>
 
                 {/* PID (Not Editable) */}
-                <div className="form-group">
+                {/* <div className="form-group">
                     <label>Patient ID (PID)</label>
                     <input type="text" value={profile?.pid || ""} disabled />
-                </div>
+                </div> */}
 
                 {/* Editable Fields */}
                 <div className="form-group">

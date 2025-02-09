@@ -1,15 +1,14 @@
-import { useState } from "react";
-import axios from "axios";
-import "../styles/AdminAddMedicine.css"; // Import the CSS file
+import React, { useState } from "react";
 
-const MedicineForm = () => {
+const AddMedicine = () => {
   const [medicine, setMedicine] = useState({
     name: "",
     description: "",
     price: "",
-    stock_quantity: "",
-    form_name: "",
+    stockQuantity: ""
   });
+
+  const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
     setMedicine({ ...medicine, [e.target.name]: e.target.value });
@@ -18,54 +17,83 @@ const MedicineForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios
-      .post("http://localhost:8092/medicines/add", medicine)
+    fetch("http://localhost:8094/api/AddMedicine/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(medicine),
+    })
       .then((response) => {
-        alert("Medicine added successfully!");
-        setMedicine({
-          name: "",
-          description: "",
-          price: "",
-          stock_quantity: "",
-          form_name: "",
-        });
+        if (!response.ok) {
+          throw new Error("Failed to add medicine");
+        }
+        return response.text(); // Expecting plain text response
+      })
+      .then((data) => {
+        setMessage(data);
+        setMedicine({ name: "", description: "", price: "", stockQuantity: "" });
       })
       .catch((error) => {
-        console.error("Error adding medicine:", error);
-        alert("Failed to add medicine. Please try again.");
+        setMessage(error.message);
       });
   };
 
   return (
-    <div className="medicine-form-container">
-      <h2>Add New Medicine</h2>
-      <form onSubmit={handleSubmit} className="medicine-form">
-        <label>Medicine Name:</label>
-        <input type="text" name="name" value={medicine.name} onChange={handleChange} required />
+    <div className="container mt-4">
+      <h2 className="text-center">Add New Medicine</h2>
+      {message && <p className="text-success">{message}</p>}
+      <form onSubmit={handleSubmit}>
+        <div className="mb-3">
+          <label className="form-label">Medicine Name</label>
+          <input
+            type="text"
+            name="name"
+            value={medicine.name}
+            onChange={handleChange}
+            className="form-control"
+            required
+          />
+        </div>
 
-        <label>Medicine Form:</label>
-        <select name="form_name" value={medicine.form_name} onChange={handleChange}  style={{height:"40px"}} required>
-          <option value="" disabled>Select Medicine Form</option>
-          <option value="Liquid">Liquid</option>
-          <option value="Tablet">Tablet</option>
-          <option value="Powder">Powder</option>
-          <option value="Capsule">Capsule</option>
-          <option value="Injection">Injection</option>
-        </select>
-<br></br>
-        <label>Description:</label>
-        <textarea name="description" value={medicine.description} onChange={handleChange} required />
+        <div className="mb-3">
+          <label className="form-label">Description</label>
+          <textarea
+            name="description"
+            value={medicine.description}
+            onChange={handleChange}
+            className="form-control"
+          ></textarea>
+        </div>
 
-        <label>Price:</label>
-        <input type="number" name="price" value={medicine.price} onChange={handleChange} required />
+        <div className="mb-3">
+          <label className="form-label">Price</label>
+          <input
+            type="number"
+            name="price"
+            value={medicine.price}
+            onChange={handleChange}
+            className="form-control"
+            required
+          />
+        </div>
 
-        <label>Stock Quantity:</label>
-        <input type="number" name="stock_quantity" value={medicine.stock_quantity} onChange={handleChange} required />
+        <div className="mb-3">
+          <label className="form-label">Stock Quantity</label>
+          <input
+            type="number"
+            name="stockQuantity"
+            value={medicine.stockQuantity}
+            onChange={handleChange}
+            className="form-control"
+            required
+          />
+        </div>
 
-        <button type="submit">Add Medicine</button>
+        <button type="submit" className="btn btn-primary">Add Medicine</button>
       </form>
     </div>
   );
 };
 
-export default MedicineForm;
+export default AddMedicine;

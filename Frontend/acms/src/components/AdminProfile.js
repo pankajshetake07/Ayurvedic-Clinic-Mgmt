@@ -18,7 +18,7 @@ const AdminProfile = () => {
       return;
     }
 
-    fetch(`http://localhost:8092/employee/${userID}`)
+    fetch(`http://localhost:8093/employee/${userID}`)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch the Admin Data");
         return res.json();
@@ -73,7 +73,7 @@ const AdminProfile = () => {
       return;
     }
     const userID = localStorage.getItem("userId");
-    fetch(`http://localhost:8092/update/employee/${userID}`, {
+    fetch(`http://localhost:8093/update/employee/${userID}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(updatedFields),

@@ -6,7 +6,7 @@ const Feedback = () => {
     const [rating, setRating] = useState(5);
     const [message, setMessage] = useState("");
 
-    const API_URL = "http://localhost:8091/addfeedback";
+    const API_URL = "http://localhost:8092/addfeedback";
 
     const handleSubmit = (e) => {
         e.preventDefault();
