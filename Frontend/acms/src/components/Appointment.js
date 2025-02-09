@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const API_BASE = 'http://localhost:8091';
+const API_BASE = 'http://localhost:8092';
 
 const Appointments = () => {
     const [selectedDate, setSelectedDate] = useState('');
@@ -58,7 +58,7 @@ const Appointments = () => {
             })
             .then(() => {
                 setBookingSuccess(true);
-                alert('✅ Appointment booked successfully!');
+                alert('Appointment booked successfully!');
             })
             .catch(err => {
                 console.error('Error booking appointment:', err.message);

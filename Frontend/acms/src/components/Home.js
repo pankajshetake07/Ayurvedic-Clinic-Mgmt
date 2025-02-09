@@ -19,7 +19,7 @@ export default function Home() {
             <header className="hero">
                 <div className="hero-overlay">
                     <div className="hero-content">
-                        <h1 className="hero-title">Welcome to PrakritiSync</h1>
+                        <h1 className="hero-title" >Welcome to PrakritiSync</h1>
                         <p className="hero-subtitle">
                             Experience holistic healing through ancient Ayurvedic practices combined with modern technology.
                         </p>

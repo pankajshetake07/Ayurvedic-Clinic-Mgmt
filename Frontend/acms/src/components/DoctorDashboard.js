@@ -3,6 +3,7 @@ import { FaUser, FaCalendar, FaTimes, FaFilePrescription } from "react-icons/fa"
 import "bootstrap/dist/css/bootstrap.min.css";
 import Logo from '../images/LogoPrakritiSync.png'
 import Logout from "./logout";
+import ConsultationForm from "./ConsultationForm";
 
 const DoctorDashboard = () => {
   const [activeTab, setActiveTab] = useState("appointments");
@@ -70,7 +71,7 @@ const getTabContent = (activeTab) => {
     case "Patients":
       return <Patients />;
     case "Prescriptions":
-      return <Prescriptions />;
+      return <ConsultationForm />;
     default:
       return null;
   }
@@ -81,7 +82,7 @@ const Patients = () => {
   const [patients, setPatients] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8091/getAllPatients")
+    fetch("http://localhost:8092/getAllPatients")
       .then((response) => response.json())
       .then((data) => setPatients(data))
       .catch((error) => console.error("Error fetching patients:", error));
@@ -129,10 +130,11 @@ const Appointments = () => {
   const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8091/appointments")
+    fetch("http://localhost:8092/appointments")
       .then((response) => response.json())
       .then((data) => setAppointments(data))
       .catch((error) => console.error("Error fetching appointments:", error));
+    console.log(appointments);
   }, []);
 
   return (
@@ -168,49 +170,6 @@ const Appointments = () => {
   );
 };
 
-// Prescriptions Component
-const Prescriptions = () => {
-  const [prescriptions, setPrescriptions] = useState([]);
-
-  useEffect(() => {
-    fetch("http://localhost:8081/getAllPrescriptions")
-      .then((response) => response.json())
-      .then((data) => setPrescriptions(data))
-      .catch((error) => console.error("Error fetching prescriptions:", error));
-  }, []);
-
-  return (
-    <div>
-      <h2 className="text-success">Prescriptions</h2>
-      {prescriptions.length === 0 ? (
-        <p>No prescriptions found.</p>
-      ) : (
-        <table className="table table-hover table-bordered">
-          <thead className="table-dark">
-            <tr>
-              <th>Prescription ID</th>
-              <th>Patient Name</th>
-              <th>Medicine</th>
-              <th>Dosage</th>
-              <th>Instructions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {prescriptions.map((prescription) => (
-              <tr key={prescription.id} style={{ backgroundColor: "#d4edda" }}>
-                <td>{prescription.id}</td>
-                <td>{prescription.patientName}</td>
-                <td>{prescription.medicine}</td>
-                <td>{prescription.dosage}</td>
-                <td>{prescription.instructions}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )}
-    </div>
-  );
-};
 
 // Sidebar Menu Items
 const menuItems = [

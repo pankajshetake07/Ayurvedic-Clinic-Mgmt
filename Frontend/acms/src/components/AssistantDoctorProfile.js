@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
+import "../styles/Profile.css"
+const API_BASE = "http://localhost:8091";
 
-const API_BASE = "http://localhost:8092";
-
-const PatientProfile = () => {
+const AssistantDoctorProfile = () => {
     const [profile, setProfile] = useState(null);
     const [originalProfile, setOriginalProfile] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [isEditing, setIsEditing] = useState(false);
+    const [isEditing, setIsEditing] = useState(false); // 🟢 Edit mode state
 
-    //Fetch patient details when component loads
+    // ✅ Fetch patient details when component loads
     useEffect(() => {
         const uid = localStorage.getItem("userId");
         if (!uid) {
@@ -24,14 +24,14 @@ const PatientProfile = () => {
                 return res.json();
             })
             .then(data => {
-                console.log("Fetched Patient Data:", data);
+                console.log("Fetched Assistant Doctor Data:", data);
                 setProfile(data);
                 setOriginalProfile(data);
                 setLoading(false);
             })
             .catch(err => {
                 console.error("Error fetching profile:", err);
-                setError("Failed to load patient details.");
+                setError("Failed to load Assistant Doctor details.");
                 setLoading(false);
             });
     }, []);
@@ -82,10 +82,10 @@ const PatientProfile = () => {
 
     return (
         <div className="dashboard-card">
-            <h2>My Profile</h2>
+            <h2 style={{ fontWeight: "bold" }}>My Profile</h2>
             <form onSubmit={handleProfileUpdate}>
                 {/* UID (Not Editable) */}
-                <div className="form-group">
+                <div className="form-group1">
                     <label>Unique ID (UID)</label>
                     <input type="text" value={profile?.uid || ""} disabled />
                 </div>
@@ -97,50 +97,50 @@ const PatientProfile = () => {
                 </div> */}
 
                 {/* Editable Fields */}
-                <div className="form-group">
+                <div className="form-group1">
                     <label>Username</label>
                     <input type="text" name="uname" value={profile?.uname || ""} onChange={handleChange} disabled={!isEditing} />
                 </div>
 
-                <div className="form-group">
+                <div className="form-group1">
                     <label>Password</label>
                     <input type="password" name="password" value={profile?.password || ""} onChange={handleChange} disabled={!isEditing} />
                 </div>
 
-                <div className="form-group">
+                <div className="form-group1">
                     <label>First Name</label>
                     <input type="text" name="fname" value={profile?.fname || ""} onChange={handleChange} disabled={!isEditing} />
                 </div>
 
-                <div className="form-group">
+                <div className="form-group1">
                     <label>Last Name</label>
                     <input type="text" name="lname" value={profile?.lname || ""} onChange={handleChange} disabled={!isEditing} />
                 </div>
 
-                <div className="form-group">
+                <div className="form-group1">
                     <label>Date of Birth</label>
                     <input type="date" name="dob" value={profile?.dob || ""} onChange={handleChange} disabled={!isEditing} />
                 </div>
 
-                <div className="form-group">
+                <div className="form-group1">
                     <label>Address</label>
                     <textarea name="address" value={profile?.address || ""} onChange={handleChange} disabled={!isEditing} />
                 </div>
 
-                <div className="form-group">
+                <div className="form-group1">
                     <label>Email</label>
                     <input type="email" name="email" value={profile?.email || ""} onChange={handleChange} disabled={!isEditing} />
                 </div>
 
                 {/* Edit & Save Buttons */}
                 {!isEditing ? (
-                    <button type="button" onClick={() => setIsEditing(true)}>Edit</button>
+                    <button type="button" onClick={() => setIsEditing(true)} className="btn-edit">Edit</button>
                 ) : (
-                    <button type="submit">Save Changes</button>
+                    <button type="submit" className="btn-edit">Save Changes</button>
                 )}
             </form>
         </div>
     );
 };
 
-export default PatientProfile;
+export default AssistantDoctorProfile;

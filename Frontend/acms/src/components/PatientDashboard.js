@@ -212,10 +212,31 @@ import Profile from './PatientProfile';
 import Feedback from './Feedback';
 import { useNavigate } from 'react-router-dom';
 
-const PatientDashboard = () => {
+const PatientDashboard = ({ user }) => {
     const [activeTab, setActiveTab] = useState('appointments');
     const [userName, setUserName] = useState('');
     const navigate = useNavigate();
+    const [patientId, setPatientId] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const uid = localStorage.getItem("userId");
+    console.log("UID:", uid);
+    useEffect(() => {
+        if (!uid) return;
+        fetch(`http://localhost:8094/api/patient/getPatientId/${uid}`)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log("Patient Data:", data);
+                setPatientId(data.pid);
+
+                setLoading(false);
+            })
+            .catch((err) => {
+                console.error("Error fetching patient details:", err);
+                setLoading(false);
+            });
+    }, [user]);
+
+
     useEffect(() => {
         const storedName = localStorage.getItem('userName');
         if (!storedName) {
@@ -236,26 +257,22 @@ const PatientDashboard = () => {
                 <nav className="sidebar-nav">
                     <a
                         className={activeTab === 'appointments' ? 'active' : ''}
-                        onClick={() => setActiveTab('appointments')}
-                    >
+                        onClick={() => setActiveTab('appointments')}>
                         <i className="fas fa-calendar-check"></i> Appointments
                     </a>
                     <a
                         className={activeTab === 'profile' ? 'active' : ''}
-                        onClick={() => setActiveTab('profile')}
-                    >
+                        onClick={() => setActiveTab('profile')}>
                         <i className="fas fa-user"></i> Profile
                     </a>
                     <a
                         className={activeTab === 'treatments' ? 'active' : ''}
-                        onClick={() => setActiveTab('treatments')}
-                    >
+                        onClick={() => setActiveTab('treatments')}>
                         <i className="fas fa-pills"></i> Treatments
                     </a>
                     <a
                         className={activeTab === 'feedback' ? 'active' : ''}
-                        onClick={() => setActiveTab('feedback')}
-                    >
+                        onClick={() => setActiveTab('feedback')}>
                         <i className="fas fa-comment-dots"></i> Feedback
                     </a>
                 </nav>
@@ -274,7 +291,7 @@ const PatientDashboard = () => {
                 <div className="dashboard-content">
                     {activeTab === 'appointments' && <Appointments />}
                     {activeTab === 'profile' && <Profile />}
-                    {activeTab === 'treatments' && <Treatments />}
+                    {activeTab === 'treatments' && <Treatments patientId={patientId} />}
                     {activeTab === 'feedback' && <Feedback />}
                 </div>
             </main>
