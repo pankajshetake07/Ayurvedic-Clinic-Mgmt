@@ -1,4 +1,5 @@
 package com.ACMSystem.entities;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +19,9 @@ public class Patient {
 	@OneToOne
 	@JoinColumn(name="uid", referencedColumnName = "uid", nullable = false)
 	private User user;
+	
+//	@OneToOne(mappedBy = "patient", cascade = CascadeType.ALL)
+//    private Feedback feedback;
 
 	public Patient() {
 		super();
