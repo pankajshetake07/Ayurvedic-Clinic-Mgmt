@@ -10,6 +10,7 @@ import logo from "../images/LogoPrakritiSync.png";
 import AssistantDoctorProfile from "../components/AssistantDoctorProfile";
 import "../styles/AssistantDoctor.css"
 import AdminAppointments from "./AdminViewAppointments";
+import Register from "./Register";
 
 function AssistantDoctor() {
   const [assDoctorName, setAdminName] = useState("Assistant Doctor");
@@ -66,7 +67,7 @@ function AssistantDoctor() {
         <div className="main-box">
           <Routes>
             <Route path="/" element={<div style={{ marginTop: "100px", textAlign: "center" }}><h1>Welcome! {assDoctorName}</h1></div>} />
-            <Route path="/patientDetails" element={<AddPatient />} />
+            <Route path="/patientDetails" element={<Register />} />
             <Route path="/appointment" element={<AdminAppointments />} />
             <Route path="/updatepatient" element={<Update_Patient />} />
             <Route path="/profile" element={<AssistantDoctorProfile />} />

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const API_BASE = "http://localhost:8092";
+const API_BASE = "http://localhost:8090/service2";
 
 const PatientProfile = () => {
     const [profile, setProfile] = useState(null);

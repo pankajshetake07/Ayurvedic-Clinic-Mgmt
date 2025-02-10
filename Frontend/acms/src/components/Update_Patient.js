@@ -147,8 +147,8 @@ const UpdatePatient = () => {
     setLoading(true);
     setMessage("");
     try {
-      const response = await axios.get(`http://localhost:8091/patient/by-id/${patientId}`);
-      console.log("Fetched Data:", response.data); // Debugging
+      const response = await axios.get(`http://localhost:8090/service2/patient/by-id/${patientId}`);
+      console.log("Fetched Data:", response.data);
       setPatientData(response.data);
     } catch (error) {
       setMessage("Error fetching patient details. Please try again.");
@@ -166,9 +166,9 @@ const UpdatePatient = () => {
           ...patientData.user,
         },
       };
-      console.log("Updated Data Sent:", updatedPatientData); // Debugging
+      console.log("Updated Data Sent:", updatedPatientData);
 
-      await axios.put(`http://localhost:8091/update/${patientId}`, updatedPatientData);
+      await axios.put(`http://localhost:8090/service2/update/${patientId}`, updatedPatientData);
       setMessage("Patient details updated successfully!");
     } catch (error) {
       setMessage("Error updating patient details. Please try again.");

@@ -19,7 +19,7 @@ const ConsultationForm = () => {
 
     // Fetch patients
     useEffect(() => {
-        fetch("http://localhost:8094/api/patient/ids")
+        fetch("http://localhost:8090/api/patient/ids")
             .then((response) => response.json())
             .then((data) => setPatients(data))
             .catch((error) => console.error("Error fetching patients:", error));
@@ -27,7 +27,7 @@ const ConsultationForm = () => {
 
     // Fetch appointments
     useEffect(() => {
-        fetch("http://localhost:8092/appointments")
+        fetch("http://localhost:8090/service2/appointments")
             .then((response) => response.json())
             .then((data) => setAppointments(data))
             .catch((error) => console.error("Error fetching appointments:", error));
@@ -35,7 +35,7 @@ const ConsultationForm = () => {
 
     // Fetch medicines
     useEffect(() => {
-        fetch("http://localhost:8094/api/medicines")
+        fetch("http://localhost:8090/api/Medicine")
             .then((response) => response.json())
             .then((data) => setMedicines(data))
             .catch((error) => console.error("Error fetching medicines:", error));
@@ -89,7 +89,7 @@ const ConsultationForm = () => {
         };
 
         try {
-            const response = await fetch("http://localhost:8094/api/Consult/prescribe", {
+            const response = await fetch("http://localhost:8090/api/Consult/prescribe", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

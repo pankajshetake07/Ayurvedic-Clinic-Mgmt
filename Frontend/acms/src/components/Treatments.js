@@ -82,7 +82,7 @@ import axios from "axios";
 import { Spinner, Alert, Card, ListGroup } from "react-bootstrap";
 
 const Treatment = ({ patientId }) => {
-    const [treatmentData, setTreatmentData] = useState([]); // Ensure it's an array
+    const [treatmentData, setTreatmentData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
@@ -90,12 +90,12 @@ const Treatment = ({ patientId }) => {
         const fetchTreatment = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:8094/api/Treatment/treatment/${patientId}`
+                    `http://localhost:8090/api/Treatment/treatment/${patientId}`
                 );
-                setTreatmentData(response.data || []); // Ensure data is an array
+                setTreatmentData(response.data || []);
                 setLoading(false);
             } catch (err) {
-                setError("Failed to load treatment details.");
+                setError("No Treatments for you.");
                 setLoading(false);
             }
         };

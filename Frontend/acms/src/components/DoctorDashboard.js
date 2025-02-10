@@ -82,7 +82,7 @@ const Patients = () => {
   const [patients, setPatients] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8092/getAllPatients")
+    fetch("http://localhost:8090/service2/getAllPatients")
       .then((response) => response.json())
       .then((data) => setPatients(data))
       .catch((error) => console.error("Error fetching patients:", error));
@@ -130,7 +130,7 @@ const Appointments = () => {
   const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8092/appointments")
+    fetch("http://localhost:8090/service2/appointments")
       .then((response) => response.json())
       .then((data) => setAppointments(data))
       .catch((error) => console.error("Error fetching appointments:", error));

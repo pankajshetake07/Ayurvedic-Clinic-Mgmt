@@ -6,7 +6,7 @@ export default function Home() {
     const navigate = useNavigate();
 
     const handleBookAppointment = () => {
-        const isRegistered = localStorage.getItem("userRegistered"); // Check registration status
+        const isRegistered = localStorage.getItem("userRegistered");
         if (isRegistered) {
             navigate("/login");
         } else {

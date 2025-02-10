@@ -39,14 +39,14 @@ function AddPatient() {
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(info)
         };
-        fetch("http://localhost:8081/register", reqOptions)
+        fetch("http://localhost:8090/auth/register", reqOptions)
             .then(resp => {
                 if (resp.ok) return resp.json();
                 else throw new Error("Server error");
             })
             .then(() => {
                 alert("Registration successful! Try Login");
-                navigate('/login');
+                // navigate('/login');
             })
             .catch(() => alert("Server error. Try later"));
     }

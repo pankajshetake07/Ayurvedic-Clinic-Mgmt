@@ -39,7 +39,7 @@ export default function Register() {
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(info)
         };
-        fetch("http://localhost:8091/register", reqOptions)
+        fetch("http://localhost:8090/auth/register", reqOptions)
             .then(resp => {
                 if (resp.ok) return resp.json();
                 else throw new Error("Server error");

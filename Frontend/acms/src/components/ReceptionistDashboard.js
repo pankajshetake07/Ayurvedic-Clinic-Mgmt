@@ -40,10 +40,10 @@ const ReceptionistDashboard = () => {
                                     className={`nav-link text-white d-flex align-items-center gap-3 p-3 w-100 rounded shadow ${activeTab === item.id ? "active-menu bg-dark" : ""
                                         }`}
                                     style={{
-                                        fontSize: "1.5rem", // Increased Font Size
-                                        padding: "15px", // Increased Padding
-                                        width: "100%", // Ensure Full Width
-                                        minWidth: "250px", // Set Minimum Width
+                                        fontSize: "1.5rem",
+                                        padding: "15px",
+                                        width: "100%",
+                                        minWidth: "250px",
                                         transition: "background 0.3s ease",
                                     }}
                                 >
@@ -78,14 +78,14 @@ const getTabContent = (activeTab) => {
     }
 };
 
-// Patients Component
+// Patient Component
 const Patients = () => {
     const [patients, setPatients] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:8092/getAllPatients")
+        fetch("http://localhost:8090/service2/getAllPatients")
             .then((response) => response.json())
-            .then((data) => setPatients(data))
+            .then((data) => setPatients(console.log(data)))
             .catch((error) => console.error("Error fetching patients:", error));
     }, []);
 
@@ -95,7 +95,8 @@ const Patients = () => {
             {patients.length === 0 ? (
                 <p>No patients found.</p>
             ) : (
-                <table className="table table-hover table-bordered">
+
+                < table className="table table-hover table-bordered">
                     <thead className="table-dark">
                         <tr>
                             <th>Username</th>
@@ -119,8 +120,9 @@ const Patients = () => {
                         ))}
                     </tbody>
                 </table>
-            )}
-        </div>
+            )
+            }
+        </div >
     );
 };
 
@@ -129,14 +131,14 @@ const Appointments = () => {
     const [appointments, setAppointments] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:8092/appointments")
+        fetch("http://localhost:8090/service2/appointments")
             .then((response) => response.json())
             .then((data) => setAppointments(data))
             .catch((error) => console.error("Error fetching appointments:", error));
     }, []);
 
     const cancelAppointment = (appointmentId) => {
-        fetch(`http://localhost:8092/appointments/cancel/${appointmentId}`, {
+        fetch(`http://localhost:8090/service2/appointments/cancel/${appointmentId}`, {
             method: "PUT",
         })
             .then((response) => response.text())

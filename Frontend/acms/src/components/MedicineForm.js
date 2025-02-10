@@ -6,7 +6,7 @@ const MedicineForm = () => {
     const [error, setError] = useState("");
 
     useEffect(() => {
-        fetch("http://localhost:8094/api/MedicineForm/getAll")
+        fetch("http://localhost:8090/api/MedicineForm/getAll")
             .then((response) => {
                 if (!response.ok) {
                     throw new Error("Failed to fetch medicine forms");

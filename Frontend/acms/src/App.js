@@ -16,6 +16,7 @@ import PatientDashboard from "./components/PatientDashboard";
 import DoctorDashboard from "./components/DoctorDashboard";
 // import AdminEmployeeDashboard from "./components/AdminEmployeeDashboard";
 import AdminDashboard from "./components/AdminDashboard";
+import ForgotPassword from "./components/ForgotPassword";
 
 function App() {
   const logged = useSelector((state) => state.logged.loggedIn); // Redux state for login
@@ -52,6 +53,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/register" element={<Register />} />
         <Route path="/admin_home/*" element={<AdminDashboard />} />
         <Route path="/doctor_home" element={<DoctorDashboard />} />

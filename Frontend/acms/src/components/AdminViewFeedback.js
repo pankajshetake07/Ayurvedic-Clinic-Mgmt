@@ -6,7 +6,7 @@ const AdminFeedback = () => {
 
     // Fetch feedback data from the backend API
     useEffect(() => {
-        fetch("http://localhost:8092/feedback/getAll")
+        fetch("http://localhost:8090/service2/feedback/getAll")
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);

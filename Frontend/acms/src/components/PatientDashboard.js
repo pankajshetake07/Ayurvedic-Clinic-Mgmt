@@ -222,7 +222,7 @@ const PatientDashboard = ({ user }) => {
     console.log("UID:", uid);
     useEffect(() => {
         if (!uid) return;
-        fetch(`http://localhost:8094/api/patient/getPatientId/${uid}`)
+        fetch(`http://localhost:8090/api/patient/getPatientId/${uid}`)
             .then((res) => res.json())
             .then((data) => {
                 console.log("Patient Data:", data);

@@ -8,7 +8,7 @@ const UserEmployeeTable = () => {
   // Fetch data from backend
   useEffect(() => {
     axios
-      .get("http://localhost:8092/employees") // Update with your backend API URL
+      .get("http://localhost:8090/service2/employees") // Update with your backend API URL
       .then((response) => {
         setData(response.data);
       })
@@ -21,7 +21,7 @@ const UserEmployeeTable = () => {
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this record?")) {
       axios
-        .delete(`http://localhost:8092/employee/delete/${id}`)
+        .delete(`http://localhost:8090/service2/employee/delete/${id}`)
         .then(() => {
           setData(data.filter((item) => item.eid !== id));
           alert("Record deleted successfully!");

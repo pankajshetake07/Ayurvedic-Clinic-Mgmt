@@ -7,7 +7,7 @@ const AdminDeletePatient = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8092/getAllPatients") // Update with your backend API URL
+    axios.get("http://localhost:8090/getAllPatients")
       .then((response) => {
         setData(response.data);
       })
@@ -20,7 +20,7 @@ const AdminDeletePatient = () => {
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this record?")) {
       axios
-        .delete(`http://localhost:8081/patient/delete/${id}`)
+        .delete(`http://localhost:8090/service2/patient/delete/${id}`)
         .then(() => {
           setData(data.filter((item) => item.user.uid !== id));
           alert("Record deleted successfully!");

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const API_BASE = 'http://localhost:8092';
+const API_BASE = 'http://localhost:8090/service2';
 
 const Appointments = () => {
     const [selectedDate, setSelectedDate] = useState('');
@@ -65,11 +65,11 @@ const Appointments = () => {
 
                 // Handle specific error messages
                 if (err.message.includes('already have an appointment')) {
-                    alert('⚠️ You have already booked an appointment for this date. Please choose another day.');
+                    alert('You have already booked an appointment for this date. Please choose another day.');
                 } else if (err.message.includes('Slot is already booked')) {
-                    alert('❌ The selected slot is already booked. Please pick another available time.');
+                    alert('The selected slot is already booked. Please pick another available time.');
                 } else {
-                    alert('❌ Failed to book the appointment. Please try again later.');
+                    alert('Failed to book the appointment. Please try again later.');
                 }
             });
 
