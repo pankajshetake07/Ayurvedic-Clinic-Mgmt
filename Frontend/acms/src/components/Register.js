@@ -90,6 +90,7 @@ export default function Register() {
                                 type="date"
                                 value={info.dob}
                                 onChange={(e) => dispatch({ type: 'update', fld: 'dob', val: e.target.value })}
+                                max={new Date().toISOString().split("T")[0]}
                             />
                             <span className="input-icon">📅</span>
                         </div>
