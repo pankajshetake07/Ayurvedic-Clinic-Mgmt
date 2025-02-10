@@ -1,9 +1,8 @@
 import { useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import '../styles/Registration.css'
+import '../styles/Registration.css';
 
 export default function Register() {
-
     const navigate = useNavigate();
 
     const init = {
@@ -29,17 +28,41 @@ export default function Register() {
     };
 
     const [info, dispatch] = useReducer(reducer, init);
-    const [msg, setMsg] = useState("");
+    const [errors, setErrors] = useState({});
 
+    const validate = () => {
+        let newErrors = {};
+
+        const namePattern = /^[A-Za-z]{2,30}$/; // Only alphabets, min 2 max 30 characters
+        const usernamePattern = /^[A-Za-z][A-Za-z0-9]{3,19}$/; // Starts with letter, can include numbers, 4-20 chars
+        const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@])[A-Za-z\d@]{6,}$/; // Min 6 chars, 1 letter, 1 number, @
+        const emailPattern = /^[a-zA-Z]+[a-zA-Z0-9]*@gmail\.com$/; // Starts with letters, can have numbers, must end with @gmail.com
+        const addressPattern = /^[A-Za-z0-9\s,.'-]{10,100}$/; // Min 10 max 100 characters
+
+        if (!info.fname.match(namePattern)) newErrors.fname = "First name must contain only alphabets (2-30 chars)";
+        if (!info.lname.match(namePattern)) newErrors.lname = "Last name must contain only alphabets (2-30 chars)";
+        if (!info.uname.match(usernamePattern)) newErrors.uname = "Username must start with a letter and be 4-20 characters long";
+        if (!info.password.match(passwordPattern)) newErrors.password = "Password must be at least 6 chars, contain 1 letter, 1 number, and @";
+        if (!info.email.match(emailPattern)) newErrors.email = "Email must start with letters, contain numbers (optional), and end with @gmail.com";
+        if (!info.address.match(addressPattern)) newErrors.address = "Address should be 10-100 characters long";
+        if (!info.dob) newErrors.dob = "Date of birth is required";
+        if (!info.gender) newErrors.gender = "Please select a gender";
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
 
     const sendData = (e) => {
         e.preventDefault();
+        if (!validate()) return;
+
         const reqOptions = {
             method: "POST",
-            headers: { 'content-type': 'application/json' },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(info)
         };
-        fetch("http://localhost:8091/register", reqOptions)
+
+        fetch("http://localhost:8081/register", reqOptions)
             .then(resp => {
                 if (resp.ok) return resp.json();
                 else throw new Error("Server error");
@@ -49,7 +72,7 @@ export default function Register() {
                 navigate('/login');
             })
             .catch(() => alert("Server error. Try later"));
-    }
+    };
 
     return (
         <div className="register-container">
@@ -70,7 +93,7 @@ export default function Register() {
                                 onChange={(e) => dispatch({ type: 'update', fld: 'fname', val: e.target.value })}
                                 placeholder="Enter your first name"
                             />
-                            <span className="input-icon">👤</span>
+                            {errors.fname && <span className="error">{errors.fname}</span>}
                         </div>
 
                         <div className="form-group">
@@ -81,7 +104,7 @@ export default function Register() {
                                 onChange={(e) => dispatch({ type: 'update', fld: 'lname', val: e.target.value })}
                                 placeholder="Enter your last name"
                             />
-                            <span className="input-icon">👥</span>
+                            {errors.lname && <span className="error">{errors.lname}</span>}
                         </div>
 
                         <div className="form-group">
@@ -92,7 +115,7 @@ export default function Register() {
                                 onChange={(e) => dispatch({ type: 'update', fld: 'dob', val: e.target.value })}
                                 max={new Date().toISOString().split("T")[0]}
                             />
-                            <span className="input-icon">📅</span>
+                            {errors.dob && <span className="error">{errors.dob}</span>}
                         </div>
 
                         <div className="form-group">
@@ -106,7 +129,7 @@ export default function Register() {
                                 <option value="female">Female</option>
                                 <option value="other">Other</option>
                             </select>
-                            <span className="input-icon">⚥</span>
+                            {errors.gender && <span className="error">{errors.gender}</span>}
                         </div>
                     </div>
                 </div>
@@ -122,7 +145,7 @@ export default function Register() {
                                 onChange={(e) => dispatch({ type: 'update', fld: 'uname', val: e.target.value })}
                                 placeholder="Choose a username"
                             />
-                            <span className="input-icon">🔑</span>
+                            {errors.uname && <span className="error">{errors.uname}</span>}
                         </div>
 
                         <div className="form-group">
@@ -133,7 +156,7 @@ export default function Register() {
                                 onChange={(e) => dispatch({ type: 'update', fld: 'password', val: e.target.value })}
                                 placeholder="Create a password"
                             />
-                            <span className="input-icon">🔒</span>
+                            {errors.password && <span className="error">{errors.password}</span>}
                         </div>
 
                         <div className="form-group">
@@ -144,7 +167,7 @@ export default function Register() {
                                 onChange={(e) => dispatch({ type: 'update', fld: 'email', val: e.target.value })}
                                 placeholder="Enter your email"
                             />
-                            <span id="mail" className="input-icon">✉️</span> {/* Mail icon */}
+                            {errors.email && <span className="error">{errors.email}</span>}
                         </div>
 
                         <div className="form-group">
@@ -155,7 +178,7 @@ export default function Register() {
                                 placeholder="Enter your full address"
                                 rows="3"
                             ></textarea>
-                            <span id="add" className="input-icon">🏠</span> {/* Address icon */}
+                            {errors.address && <span className="error">{errors.address}</span>}
                         </div>
                     </div>
                 </div>
@@ -174,5 +197,5 @@ export default function Register() {
                 Already have an account? <a href="/login">Login here</a>
             </div>
         </div>
-    )
+    );
 }
