@@ -12,12 +12,12 @@ import com.ACMSystem.dto.AppointmentResponse;
 import com.ACMSystem.services.AppointmentResponseService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+//@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class AppointmentResponseController {
 	@Autowired
 	private AppointmentResponseService appointmentResponseService;
 	
-	@GetMapping("/appointments")
+	@GetMapping("/service2/appointments")
 	public ResponseEntity<List<AppointmentResponse>> getAllAppointments()
 	{
 		List<AppointmentResponse> appointments = appointmentResponseService.getAppointments();

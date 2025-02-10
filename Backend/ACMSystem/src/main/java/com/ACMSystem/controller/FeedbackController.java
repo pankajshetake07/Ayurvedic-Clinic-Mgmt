@@ -16,19 +16,19 @@ import com.ACMSystem.entities.Feedback;
 import com.ACMSystem.services.FeedbackService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
 public class FeedbackController {
 	
 	@Autowired
 	FeedbackService feedbackService;
 	
-	@PostMapping("/addfeedback")
+	@PostMapping("/service2/addfeedback")
 	public ResponseEntity<Feedback> addFeedback(@RequestBody Feedback feedback) {
 	    Feedback savedFeedback = feedbackService.addFeedback(feedback.getContent(), feedback.getRating());
 	    return ResponseEntity.ok(savedFeedback);
 	}
 	
-	@GetMapping("/feedback/getAll")
+	@GetMapping("/service2/feedback/getAll")
 	public List<Feedback> getAllFeedbacks(){
 		return feedbackService.getAllFeedbacks();
 	}

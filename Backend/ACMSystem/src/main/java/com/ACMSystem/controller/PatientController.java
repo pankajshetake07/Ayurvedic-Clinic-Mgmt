@@ -20,7 +20,7 @@ import com.ACMSystem.services.PatientService;
 import com.ACMSystem.services.UserService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
 public class PatientController {
 
 	
@@ -31,10 +31,10 @@ public class PatientController {
 	UserService userService;
 	
 	//controller for fetching all the patients 
-//	@GetMapping("/getAllPatients")
-//	public List<Patient> getAllPatients(){
-//		return patientService.getAllPatient();
-//	}
+	@GetMapping("/service2/getAllPatients")
+	public List<Patient> getAllPatients(){
+		return patientService.getAllPatient();
+	}
 	
 	//controller for adding new patient record
 	@PostMapping("/register-patient")
@@ -44,25 +44,25 @@ public class PatientController {
 
 	
 	//controller for searching patients based on the user name provided by user
-	@GetMapping("/patients/by-name/{name}")
-	public List<Patient> findPatientByName(@PathVariable String name){
-		return patientService.findPatientByName(name);
-	}
+//	@GetMapping("/patients/by-name/{name}")
+//	public List<Patient> findPatientByName(@PathVariable String name){
+//		return patientService.findPatientByName(name);
+//	}
 	
 	//find patient by patient_ID
-	@GetMapping("/patient/by-id/{id}")
+	@GetMapping("/service2/patient/by-id/{id}")
 	public Optional<Patient> findPatientById(@PathVariable int id){
 		return patientService.findPatientById(id);
 	}
 	
 	//This API for fetching patient all information by userID
-	@GetMapping("/patient/by-uid/{uid}")
+	@GetMapping("/service2/patient/by-uid/{uid}")
     public User getPatientByUserId(@PathVariable int uid) {
         return patientService.getPatientByUserId(uid);
     }
 	
 	//This is API for update patient information
-	@PatchMapping("/update/{uid}")
+	@PatchMapping("/service2/update/{uid}")
     public User updatePatient(@PathVariable int uid, @RequestBody Map<String, Object> updates) {
         return patientService.updatePatientFields(uid, updates);
     }

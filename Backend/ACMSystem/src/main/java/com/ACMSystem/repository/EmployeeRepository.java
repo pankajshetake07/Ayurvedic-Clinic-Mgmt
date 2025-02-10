@@ -12,4 +12,6 @@ import com.ACMSystem.entities.Employee;
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 	//Optional<Employee> findByUserUid(int uid); // Get employee by User ID
 	List<Employee> findByUser_Fname(String fname);
+	
+	Employee findByUser_Uid(int uid);
 }
