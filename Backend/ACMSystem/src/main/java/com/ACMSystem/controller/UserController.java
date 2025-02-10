@@ -21,7 +21,7 @@ import com.ACMSystem.entities.User;
 import com.ACMSystem.services.RoleService;
 import com.ACMSystem.services.UserService;
 
-@CrossOrigin(origins = "http://localhost:3000")
+//@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class UserController {
 
@@ -40,16 +40,16 @@ public class UserController {
 		return roleService.getAllRoles();
 	}
 
-	@PostMapping("/register")
-	public Patient insertUserRecord(@RequestBody UserDTO userDto) {
-		return userService.insertUserRecord(userDto);
-	}
-
-	@PostMapping("/login")
-	public User loginUser(@RequestBody LoginDto credentials) {
-		User user = userService.loginUser(credentials.getUname(), credentials.getPassword());
-		return user;
-	}
+//	@PostMapping("/register")
+//	public Patient insertUserRecord(@RequestBody UserDTO userDto) {
+//		return userService.insertUserRecord(userDto);
+//	}
+//
+//	@PostMapping("/login")
+//	public User loginUser(@RequestBody LoginDto credentials) {
+//		User user = userService.loginUser(credentials.getUname(), credentials.getPassword());
+//		return user;
+//	}
 
 	@GetMapping("/getUserRole/{username}")
 	public String getUserRole(@PathVariable String username) {

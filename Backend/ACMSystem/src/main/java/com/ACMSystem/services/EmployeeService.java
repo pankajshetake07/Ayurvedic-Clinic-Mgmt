@@ -17,6 +17,8 @@ import com.ACMSystem.repository.EmployeeRepository;
 import com.ACMSystem.repository.RoleRepository;
 import com.ACMSystem.repository.UserRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class EmployeeService {
 	
@@ -59,8 +61,8 @@ public class EmployeeService {
     	return employeeRepository.findAll();
     }
     
-    public Optional<Employee> getEmployeeById(int id) {
-        return employeeRepository.findById(id);
+    public Employee getEmployeeById(int id) {
+        return employeeRepository.findByUser_Uid(id);
     }
 
     // Add Employee 
@@ -118,6 +120,44 @@ public class EmployeeService {
     	Employee emp = opt.get();
     	employeeRepository.delete(emp);
     	return emp;
+    }
+    
+    @Transactional
+    public Employee updateEmployee(int uid, EmployeeDto empDTO) {
+        // Step 1: Fetch existing User by uid
+        Optional<User> optionalUser = userRepository.findById(uid);
+        if (optionalUser.isEmpty()) {
+            throw new RuntimeException("User not found with UID: " + uid);
+        }
+        User user = optionalUser.get();
+        //System.out.println(uid);
+
+        // Step 2: Update User details
+        user.setPassword(empDTO.getUser().getPassword());
+        user.setFname(empDTO.getUser().getFname());
+        user.setLname(empDTO.getUser().getLname());
+        user.setEmail(empDTO.getUser().getEmail());
+        user.setAddress(empDTO.getUser().getAddress());
+        user.setDob(empDTO.getUser().getDob());
+        userRepository.save(user);
+
+        // Step 3: Fetch existing Employee by uid (assuming uid is the employee's identifier)
+        Employee employee = employeeRepository.findByUser_Uid(uid);
+        if (null == employee) {
+            throw new RuntimeException("Employee not found with UID: " + uid);
+        }
+        
+        //Employee employee = optionalEmployee.get();
+
+        // Step 4: Update Employee details
+        //employee.setDoj(empDTO.getDoj());
+        //employee.setRegno(empDTO.getRegno());
+        //employee.setQualification(empDTO.getQualification());
+        employee.setUser(user); // Associate updated User with Employee
+        employeeRepository.save(employee);
+        
+
+        return employee;
     }
     
 }
