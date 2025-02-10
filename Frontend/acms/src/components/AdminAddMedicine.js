@@ -17,7 +17,7 @@ const AddMedicine = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch("http://localhost:8094/api/AddMedicine/add", {
+    fetch("http://localhost:8090/api/AddMedicine/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
