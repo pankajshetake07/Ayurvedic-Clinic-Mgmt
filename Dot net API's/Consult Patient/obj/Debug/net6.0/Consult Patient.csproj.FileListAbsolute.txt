@@ -1,0 +1,65 @@
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\appsettings.Development.json
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\appsettings.json
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Consult Patient.staticwebassets.endpoints.json
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Consult Patient.exe
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Consult Patient.deps.json
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Consult Patient.runtimeconfig.json
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Consult Patient.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Consult Patient.pdb
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Humanizer.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Microsoft.Extensions.Caching.Abstractions.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Microsoft.Extensions.Logging.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Microsoft.Extensions.Logging.Abstractions.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Microsoft.Extensions.Options.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Microsoft.OpenApi.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\MySqlConnector.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Pomelo.EntityFrameworkCore.MySql.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\System.Collections.Immutable.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\obj\Debug\net6.0\Consult Patient.csproj.AssemblyReference.cache
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\obj\Debug\net6.0\Consult Patient.GeneratedMSBuildEditorConfig.editorconfig
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\obj\Debug\net6.0\Consult Patient.AssemblyInfoInputs.cache
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\obj\Debug\net6.0\Consult Patient.AssemblyInfo.cs
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\obj\Debug\net6.0\Consult Patient.csproj.CoreCompileInputs.cache
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\obj\Debug\net6.0\Consult Patient.MvcApplicationPartsAssemblyInfo.cs
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\obj\Debug\net6.0\Consult Patient.MvcApplicationPartsAssemblyInfo.cache
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\obj\Debug\net6.0\Consult Patient.sourcelink.json
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\obj\Debug\net6.0\scopedcss\bundle\Consult Patient.styles.css
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\obj\Debug\net6.0\staticwebassets.build.json
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\obj\Debug\net6.0\staticwebassets.development.json
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\obj\Debug\net6.0\staticwebassets.build.endpoints.json
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\obj\Debug\net6.0\staticwebassets\msbuild.Consult Patient.Microsoft.AspNetCore.StaticWebAssets.props
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\obj\Debug\net6.0\staticwebassets\msbuild.Consult Patient.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\obj\Debug\net6.0\staticwebassets\msbuild.build.Consult Patient.props
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Consult Patient.props
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.Consult Patient.props
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\obj\Debug\net6.0\staticwebassets.pack.json
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\obj\Debug\net6.0\Consult .0E253476.Up2Date
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\obj\Debug\net6.0\Consult Patient.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\obj\Debug\net6.0\refint\Consult Patient.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\obj\Debug\net6.0\Consult Patient.pdb
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\obj\Debug\net6.0\Consult Patient.genruntimeconfig.cache
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\obj\Debug\net6.0\ref\Consult Patient.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\obj\Debug\net6.0\staticwebassets.upToDateCheck.txt
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Steeltoe.Common.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Steeltoe.Common.Abstractions.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Steeltoe.Common.Http.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Steeltoe.Connector.Abstractions.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Steeltoe.Connector.ConnectorBase.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Steeltoe.Discovery.Abstractions.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Steeltoe.Discovery.ClientBase.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Steeltoe.Discovery.ClientCore.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Steeltoe.Discovery.Eureka.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\Steeltoe.Extensions.Configuration.Abstractions.dll
+F:\docs\OneDrive\Desktop\Aayurvedic Clinic Management C-DAC\Dot net API's\Consult Patient\bin\Debug\net6.0\System.Reflection.MetadataLoadContext.dll
