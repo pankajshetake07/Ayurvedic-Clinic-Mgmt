@@ -108,14 +108,14 @@ const Patients = () => {
           </thead>
           <tbody>
             {patients.map((user) => (
-              <tr key={user.uid} style={{ backgroundColor: "#d4edda" }}>
-                <td>{user.uname}</td>
-                <td>{user.fname} {user.lname}</td>
-                <td>{user.dob}</td>
-                <td>{user.address}</td>
+              <tr key={user.user.uid} style={{ backgroundColor: "#d4edda" }}>
+                <td>{user.user.uname}</td>
+                <td>{user.user.fname} {user.user.lname}</td>
+                <td>{user.user.dob}</td>
+                <td>{user.user.address}</td>
 
-                <td>{user.gender}</td>
-                <td>{user.email}</td>
+                <td>{user.user.gender}</td>
+                <td>{user.user.email}</td>
               </tr>
             ))}
           </tbody>
