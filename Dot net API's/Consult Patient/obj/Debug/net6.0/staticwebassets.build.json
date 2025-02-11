@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "lvlzqyMpoykNnYdMdLLPuIYFFo3WcOe2P8RQAWwcvLg=",
+  "Source": "Consult Patient",
+  "BasePath": "_content/Consult Patient",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
